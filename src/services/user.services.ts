@@ -31,3 +31,13 @@ export const createUserService = async (body: iUserRequest): Promise<User> => {
 
     return newUser;
 };
+
+export const retrieveUserService = async (user_id: string): Promise<User> => {
+    const user = await AppDataSource.getRepository(User)
+        .findOneByOrFail({ id: user_id })
+        .catch(() => {
+            throw new AppError("User not found", 404);
+        });
+
+    return user;
+};

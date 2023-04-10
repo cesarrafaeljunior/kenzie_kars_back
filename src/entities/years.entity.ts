@@ -4,7 +4,7 @@ import { Advertised_car } from "./adverts.entity";
 
 @Entity("years")
 export class Year {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn()
     id: string
 
     @OneToMany(() => Advertised_car, (advert) => advert.year)

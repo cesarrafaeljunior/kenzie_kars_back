@@ -8,3 +8,5 @@ export interface iUserRequest {
     password: string;
     is_seller: boolean;
 }
+
+export type iUserUpdate = Partial<iUserRequest>;

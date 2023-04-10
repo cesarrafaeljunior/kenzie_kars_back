@@ -38,18 +38,18 @@ export class Advertised_car {
     @ManyToOne(() => User, {cascade: true})
     user: User
     
-    @ManyToOne(() => Year, {cascade: true})
+    @ManyToOne(() => Year, (year) => year.advert, {cascade: true})
     year: Year
     
-    @ManyToOne(() => Model, {cascade: true})
+    @ManyToOne(() => Model, (model) => model.advert, {cascade: true})
     model: Model
     
-    @ManyToOne(() => Fuel, {cascade:true})
+    @ManyToOne(() => Fuel, (fuel) => fuel.advert, {cascade:true})
     fuel: Fuel
     
-    @ManyToOne(() => Color, {cascade:true})
+    @ManyToOne(() => Color, (color) => color.advert, {cascade:true})
     color: Color
     
-    @ManyToOne(() => Brand, {cascade:true})
+    @ManyToOne(() => Brand, (brand) => brand.advert, {cascade:true})
     brand: Brand
 }

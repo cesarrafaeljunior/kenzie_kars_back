@@ -10,3 +10,8 @@ export interface iUserRequest {
 }
 
 export type iUserUpdate = Partial<iUserRequest>;
+
+export interface iLogin {
+    email: string;
+    password: string;
+}

@@ -5,6 +5,6 @@ export class Year {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({length: 50})
+    @Column()
     year: Number
 }

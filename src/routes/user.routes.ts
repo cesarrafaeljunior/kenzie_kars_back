@@ -5,10 +5,11 @@ import {
     editUserController,
     retrieveUserController,
 } from "../controllers/user.controllers";
+import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
 
 export const userRoutes = Router();
 
 userRoutes.post("", createUserController);
-userRoutes.get("/:id", retrieveUserController);
-userRoutes.patch("/:id", editUserController);
-userRoutes.delete("/:id", deleteUserController);
+userRoutes.get("/:id", isUserExistsMiddleware, retrieveUserController);
+userRoutes.patch("/:id", isUserExistsMiddleware, editUserController);
+userRoutes.delete("/:id", isUserExistsMiddleware, deleteUserController);

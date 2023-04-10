@@ -12,16 +12,16 @@ export const createUserController = async (req: Request, res: Response) => {
 };
 
 export const retrieveUserController = async (req: Request, res: Response) => {
-    const user = await retrieveUserService(req.params.id);
+    const user = await retrieveUserService(req.paramUser);
     return res.status(200).json(user);
 };
 
 export const editUserController = async (req: Request, res: Response) => {
-    const user = await editUserService(req.body, req.params.id);
+    const user = await editUserService(req.body, req.paramUser);
     return res.status(200).json(user);
 };
 
 export const deleteUserController = async (req: Request, res: Response) => {
-    await deleteUserService(req.params.id);
+    await deleteUserService(req.paramUser);
     return res.status(204).json({});
 };

@@ -32,24 +32,14 @@ export const createUserService = async (body: iUserRequest): Promise<User> => {
     return newUser;
 };
 
-export const retrieveUserService = async (user_id: string): Promise<User> => {
-    const user = await AppDataSource.getRepository(User)
-        .findOneByOrFail({ id: user_id })
-        .catch(() => {
-            throw new AppError("User not found", 404);
-        });
-
+export const retrieveUserService = async (user: User): Promise<User> => {
     // Fazer schema para remover a senha com o yup
 
     return user;
 };
 
-export const editUserService = async (body: iUserUpdate, user_id: string): Promise<User> => {
+export const editUserService = async (body: iUserUpdate, user: User): Promise<User> => {
     const userRepo = AppDataSource.getRepository(User);
-
-    let user = await userRepo.findOneByOrFail({ id: user_id }).catch(() => {
-        throw new AppError("User not found", 404);
-    });
 
     if (body.email) {
         await userRepo.findOneBy({ email: body.email }).then((res) => {
@@ -83,14 +73,8 @@ export const editUserService = async (body: iUserUpdate, user_id: string): Promi
     return user;
 };
 
-export const deleteUserService = async (user_id: string): Promise<Object> => {
-    const userRepo = AppDataSource.getRepository(User);
-
-    const user = await userRepo.findOneByOrFail({ id: user_id }).catch(() => {
-        throw new AppError("User not found", 404);
-    });
-
-    await userRepo.softDelete({ id: user.id });
+export const deleteUserService = async (user: User): Promise<Object> => {
+    await AppDataSource.getRepository(User).softDelete({ id: user.id });
 
     return {};
 };

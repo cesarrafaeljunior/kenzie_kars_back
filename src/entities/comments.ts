@@ -1,24 +1,31 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from "typeorm";
 import { User } from "./users.entity";
 import { Advertised_car } from "./adverts.entity";
 
 @Entity("comments")
 export class Comment {
     @PrimaryGeneratedColumn("uuid")
-    id: string
+    id: string;
 
     @Column()
-    description: string
+    description: string;
 
     @CreateDateColumn()
-    created_at: Date
+    created_at: Date;
 
     @UpdateDateColumn()
-    updated_at: Date
+    updated_at: Date;
 
-    @ManyToOne(() => User)
-    user: User
-    
-    @ManyToOne(() => Advertised_car, {cascade: true})
-    advert: Advertised_car
+    @ManyToOne(() => User, (user) => user.comments)
+    user: User;
+
+    @ManyToOne(() => Advertised_car, (advert) => advert.comments, { cascade: true })
+    advert: Advertised_car;
 }

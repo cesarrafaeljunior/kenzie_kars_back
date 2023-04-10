@@ -4,11 +4,11 @@ import { Advertised_car } from "./adverts.entity";
 @Entity("models")
 export class Model {
     @PrimaryGeneratedColumn()
-    id: string
+    id: string;
 
     @OneToMany(() => Advertised_car, (advert) => advert.model)
-    advert: Advertised_car
+    adverts: Advertised_car[];
 
-    @Column({length: 50})
-    model: string
+    @Column({ length: 50 })
+    model: string;
 }

@@ -82,3 +82,15 @@ export const editUserService = async (body: iUserUpdate, user_id: string): Promi
 
     return user;
 };
+
+export const deleteUserService = async (user_id: string): Promise<Object> => {
+    const userRepo = AppDataSource.getRepository(User);
+
+    const user = await userRepo.findOneByOrFail({ id: user_id }).catch(() => {
+        throw new AppError("User not found", 404);
+    });
+
+    await userRepo.softDelete({ id: user.id });
+
+    return {};
+};

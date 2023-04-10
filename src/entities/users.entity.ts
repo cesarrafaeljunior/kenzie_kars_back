@@ -1,50 +1,69 @@
 import { hashSync } from "bcryptjs";
-import {BeforeInsert, BeforeUpdate, Column, CreateDateColumn,DeleteDateColumn,Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-
+import {
+    BeforeInsert,
+    BeforeUpdate,
+    Column,
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from "typeorm";
+import { Advertised_car } from "./adverts.entity";
+import { Address } from "./adresses.entity";
+import { Comment } from "./comments";
 
 @Entity("users")
 export class User {
     @PrimaryGeneratedColumn("uuid")
-    id: string
+    id: string;
 
-    @Column({length: 50})
-    name: string
+    @Column({ length: 50 })
+    name: string;
 
-    @Column({length: 100, unique: true})
-    email: string
+    @Column({ length: 100, unique: true })
+    email: string;
 
-    @Column({length: 11, unique: true})
-    cpf: string
+    @Column({ length: 11, unique: true })
+    cpf: string;
 
-    @Column({length: 11, unique: true})
-    phone_number: string
-
-    @Column()
-    birth_date: Date
+    @Column({ length: 11, unique: true })
+    phone_number: string;
 
     @Column()
-    description: string
+    birth_date: Date;
 
-    @Column({length: 120})
-    password: string
+    @Column()
+    description: string;
+
+    @Column({ length: 120 })
+    password: string;
 
     @BeforeUpdate()
     @BeforeInsert()
-    hashPassword(){
-        this.password = hashSync(this.password, 10) 
+    hashPassword() {
+        this.password = hashSync(this.password, 10);
     }
 
-    @Column({default: false})
-    is_seller: boolean
+    @Column({ default: false })
+    is_seller: boolean;
 
     @CreateDateColumn()
-    created_at: Date
+    created_at: Date;
 
     @UpdateDateColumn()
-    updated_at: Date
+    updated_at: Date;
 
     @DeleteDateColumn()
-    deleted_at: Date
+    deleted_at: Date;
 
+    @OneToMany(() => Advertised_car, (advert) => advert.user)
+    adverts: Advertised_car[];
 
+    @OneToMany(() => Address, (address) => address.user)
+    adresses: Address[];
+
+    @OneToMany(() => Comment, (comment) => comment.user)
+    comments: Comment[];
 }

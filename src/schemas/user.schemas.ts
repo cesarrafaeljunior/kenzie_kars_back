@@ -15,7 +15,7 @@ export const userRequestSchema: ObjectSchema<iUserRequest> = yup.object().shape(
     email: yup.string().email().max(100).required(),
     cpf: yup.string().max(11).required(),
     phone_number: yup.string().max(11).required(),
-    birthdate: yup.date().required().test(ensureIfIsLegalAge),
+    birthdate: yup.date().required().test("Legal age", "Come back when you're 18 years", ensureIfIsLegalAge),
     description: yup.string().required(),
     password: yup.string().required(),
     is_seller: yup.boolean().required(),

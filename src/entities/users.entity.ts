@@ -31,8 +31,8 @@ export class User {
     @Column({ length: 11, unique: true })
     phone_number: string;
 
-    @Column()
-    birth_date: Date;
+    @Column({ type: "date" })
+    birthdate: Date;
 
     @Column()
     description: string;

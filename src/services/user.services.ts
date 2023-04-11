@@ -1,9 +1,10 @@
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/users.entity";
 import { AppError } from "../errors";
-import { iUserRequest, iUserUpdate } from "../interfaces/user.interfaces";
+import { iUser, iUserRequest, iUserUpdate } from "../interfaces/user.interfaces";
+import { userResponseSchema } from "../schemas/user.schemas";
 
-export const createUserService = async (body: iUserRequest): Promise<User> => {
+export const createUserService = async (body: iUserRequest): Promise<iUser> => {
     const userRepo = AppDataSource.getRepository(User);
 
     await userRepo.findOneBy({ email: body.email }).then((res) => {
@@ -27,18 +28,23 @@ export const createUserService = async (body: iUserRequest): Promise<User> => {
     const newUser = userRepo.create(body);
     await userRepo.save(newUser);
 
-    // Fazer schema para remover a senha com o yup
+    const userValidated: iUser = userResponseSchema.validateSync(newUser, {
+        stripUnknown: true,
+        abortEarly: false,
+    });
 
-    return newUser;
+    return userValidated;
 };
 
-export const retrieveUserService = async (user: User): Promise<User> => {
-    // Fazer schema para remover a senha com o yup
-
-    return user;
+export const retrieveUserService = async (user: User): Promise<iUser> => {
+    const userValidated: iUser = userResponseSchema.validateSync(user, {
+        stripUnknown: true,
+        abortEarly: false,
+    });
+    return userValidated;
 };
 
-export const editUserService = async (body: iUserUpdate, user: User): Promise<User> => {
+export const editUserService = async (body: iUserUpdate, user: User): Promise<iUser> => {
     const userRepo = AppDataSource.getRepository(User);
 
     if (body.email) {
@@ -68,9 +74,12 @@ export const editUserService = async (body: iUserUpdate, user: User): Promise<Us
     user = userRepo.create({ ...user, ...body });
     await userRepo.save(user);
 
-    // Fazer schema para remover a senha com o yup
+    const userValidated: iUser = userResponseSchema.validateSync(user, {
+        stripUnknown: true,
+        abortEarly: false,
+    });
 
-    return user;
+    return userValidated;
 };
 
 export const deleteUserService = async (user: User): Promise<Object> => {

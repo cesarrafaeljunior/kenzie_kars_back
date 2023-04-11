@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
-import { iLogin, iUserRequest } from "../interfaces/user.interfaces";
+import { iLogin, iUser, iUserRequest } from "../interfaces/user.interfaces";
 
 const ensureIfIsLegalAge = (birthdate: Date) => {
     let date = new Date();
@@ -23,15 +23,18 @@ export const userRequestSchema: ObjectSchema<iUserRequest> = yup.object().shape(
 
 export const userUpdateSchema = userRequestSchema.partial();
 
-// export const userResponseSchema: ObjectSchema<iClientResponse> = yup.object().shape({
-//     updatedAt: yup.date().required(),
-//     createdAt: yup.date().required(),
-//     phone_number: yup.string().min(10).max(11).required(),
-//     email: yup.string().email().max(127).required(),
-//     last_name: yup.string().max(50).required(),
-//     first_name: yup.string().max(50).required(),
-//     id: yup.string().uuid().required(),
-// });
+export const userResponseSchema: ObjectSchema<iUser> = yup.object().shape({
+    updated_at: yup.date().required(),
+    created_at: yup.date().required(),
+    is_seller: yup.boolean().required(),
+    description: yup.string().required(),
+    birthdate: yup.date().required(),
+    phone_number: yup.string().required(),
+    cpf: yup.string().required(),
+    email: yup.string().email().required(),
+    name: yup.string().required(),
+    id: yup.string().required(),
+});
 
 export const loginSchema: ObjectSchema<iLogin> = yup.object().shape({
     email: yup.string().email().required(),

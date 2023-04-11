@@ -23,8 +23,3 @@ export interface iUser {
     created_at: Date;
     updated_at: Date;
 }
-
-export interface iLogin {
-    email: string;
-    password: string;
-}

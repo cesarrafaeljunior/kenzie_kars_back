@@ -1,9 +1,10 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class fixRelations1681233863521 implements MigrationInterface {
-    name = 'fixRelations1681233863521'
+export class fixRelations1681235278633 implements MigrationInterface {
+    name = 'fixRelations1681235278633'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "users" RENAME COLUMN "birth_date" TO "birthdate"`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP CONSTRAINT "FK_a6385b0a3986c5d0ff6ca422e63"`);
         await queryRunner.query(`ALTER TABLE "years" DROP CONSTRAINT "PK_d6fe7de297533f142df4cb749ab"`);
         await queryRunner.query(`ALTER TABLE "years" DROP COLUMN "id"`);
@@ -39,6 +40,8 @@ export class fixRelations1681233863521 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD "colorId" integer`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP COLUMN "brandId"`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD "brandId" integer`);
+        await queryRunner.query(`ALTER TABLE "users" DROP COLUMN "birthdate"`);
+        await queryRunner.query(`ALTER TABLE "users" ADD "birthdate" date NOT NULL`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD CONSTRAINT "FK_a6385b0a3986c5d0ff6ca422e63" FOREIGN KEY ("yearId") REFERENCES "years"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD CONSTRAINT "FK_2d881f577902570132f0d2840dc" FOREIGN KEY ("modelId") REFERENCES "models"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD CONSTRAINT "FK_2d87d242e050cbbd8c20e894246" FOREIGN KEY ("fuelId") REFERENCES "fuels"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
@@ -52,6 +55,8 @@ export class fixRelations1681233863521 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP CONSTRAINT "FK_2d87d242e050cbbd8c20e894246"`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP CONSTRAINT "FK_2d881f577902570132f0d2840dc"`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP CONSTRAINT "FK_a6385b0a3986c5d0ff6ca422e63"`);
+        await queryRunner.query(`ALTER TABLE "users" DROP COLUMN "birthdate"`);
+        await queryRunner.query(`ALTER TABLE "users" ADD "birthdate" TIMESTAMP NOT NULL`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP COLUMN "brandId"`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD "brandId" uuid`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" DROP COLUMN "colorId"`);
@@ -87,6 +92,7 @@ export class fixRelations1681233863521 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "years" ADD "id" uuid NOT NULL DEFAULT uuid_generate_v4()`);
         await queryRunner.query(`ALTER TABLE "years" ADD CONSTRAINT "PK_d6fe7de297533f142df4cb749ab" PRIMARY KEY ("id")`);
         await queryRunner.query(`ALTER TABLE "advertised_cars" ADD CONSTRAINT "FK_a6385b0a3986c5d0ff6ca422e63" FOREIGN KEY ("yearId") REFERENCES "years"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "users" RENAME COLUMN "birthdate" TO "birth_date"`);
     }
 
 }

@@ -1,18 +1,20 @@
-import "express-async-errors";
-import express from "express";
-import cors from "cors";
-import { handleError } from "./errors";
-import { userRoutes } from "./routes/user.routes";
-import { loginRoutes } from "./routes/login.routes";
+import "express-async-errors"
+import express from "express"
+import cors from "cors"
+import { handleError } from "./errors"
+import { userRoutes } from "./routes/user.routes"
+import { loginRoutes } from "./routes/login.routes"
+import { advertisedRoutes } from "./routes/advertisedcars.routes"
 
-const app = express();
+const app = express()
 
-app.use(express.json());
-app.use(cors({ origin: ["localhost:3000"] }));
+app.use(express.json())
+app.use(cors({ origin: ["localhost:3000"] }))
 
-app.use("/login", loginRoutes);
-app.use("/users", userRoutes);
+app.use("/login", loginRoutes)
+app.use("/users", userRoutes)
+app.use("/advertised", advertisedRoutes)
 
-app.use(handleError);
+app.use(handleError)
 
-export default app;
+export default app

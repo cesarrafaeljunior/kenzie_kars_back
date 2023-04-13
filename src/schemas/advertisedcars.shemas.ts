@@ -1,6 +1,6 @@
-import * as yup from "yup"
-import { ObjectSchema } from "yup"
-import { iAdvertised, iAdvertisedRequest } from "../interfaces/advertised.interfaces"
+import * as yup from "yup";
+import { ObjectSchema } from "yup";
+import { iAdvertised, iAdvertisedRequest } from "../interfaces/advertised.interfaces";
 
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup.object().shape({
 	mileage: yup.number().positive().required(),
@@ -9,7 +9,9 @@ export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup.obj
 	cover_image: yup.string().required(),
 	location: yup.string().length(8).required(),
 	is_avaliable: yup.boolean().required().default(true),
-})
+});
+
+export const advertisedUpdateSchema = advertisedRequestSchema.partial();
 
 export const advertisedResponseSchema: ObjectSchema<iAdvertised> = yup.object().shape({
 	id: yup.string().required(),
@@ -21,4 +23,4 @@ export const advertisedResponseSchema: ObjectSchema<iAdvertised> = yup.object().
 	created_at: yup.date().required(),
 	updated_at: yup.date().required(),
 	is_avaliable: yup.boolean().required(),
-})
+});

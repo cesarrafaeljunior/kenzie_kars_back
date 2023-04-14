@@ -6,7 +6,7 @@ export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup.obj
 	mileage: yup.number().positive().required(),
 	price: yup.number().positive().required(),
 	description: yup.string().required(),
-	cover_image: yup.string().required(),
+	cover_image: yup.string().max(300).required(),
 	location: yup.string().length(8).required(),
 	is_avaliable: yup.boolean().required().default(true),
 });
@@ -18,7 +18,7 @@ export const advertisedResponseSchema: ObjectSchema<iAdvertised> = yup.object().
 	mileage: yup.number().positive().required(),
 	price: yup.number().positive().required(),
 	description: yup.string().required(),
-	cover_image: yup.string().required(),
+	cover_image: yup.string().max(300).required(),
 	location: yup.string().length(8).required(),
 	created_at: yup.date().required(),
 	updated_at: yup.date().required(),

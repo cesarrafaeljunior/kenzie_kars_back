@@ -13,9 +13,9 @@ export const createAdvertisedController = async (
 ): Promise<Response> => {
 	const advertisedData = req.body;
 	const user = req.authUser;
-	const newaAvertised = await createAdvertisedService(user, advertisedData);
+	const newAvertised = await createAdvertisedService(user, advertisedData);
 
-	return res.status(201).json(newaAvertised);
+	return res.status(201).json(newAvertised);
 };
 
 export const retrieveAdvertisedByUserController = async (

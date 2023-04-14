@@ -19,7 +19,7 @@ export const createAdvertisedService = async (
 
 	const advertised: Advertised_car = advertisedRespository.create({
 		...advertisedData,
-		user: user!,
+		user: user,
 	});
 	await advertisedRespository.save(advertised);
 
@@ -72,7 +72,7 @@ export const editAdvertisedService = async (
 	const oldAdvertisedData = await advertisedRespository.findOneBy({
 		id: advertisedId,
 	});
-	console.log(oldAdvertisedData);
+
 	if (!oldAdvertisedData) {
 		throw new AppError("advertise not found ", 404);
 	}

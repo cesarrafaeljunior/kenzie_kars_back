@@ -5,10 +5,14 @@ import { User } from "../entities/users.entity";
 import { AppError } from "../errors";
 import {
   iUser,
+  iUserNotAddress,
   iUserRequest,
   iUserUpdate,
 } from "../interfaces/user.interfaces";
-import { userResponseSchema } from "../schemas/user.schemas";
+import {
+  userResponseSchema,
+  userResponseSchemaNotAddress,
+} from "../schemas/user.schemas";
 
 export const createUserService = async (body: iUserRequest): Promise<any> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
@@ -65,11 +69,41 @@ export const createUserService = async (body: iUserRequest): Promise<any> => {
   return userValidated;
 };
 
-export const retrieveUserService = async (user: User): Promise<iUser> => {
-  const userValidated: iUser = userResponseSchema.validateSync(user, {
-    stripUnknown: true,
-    abortEarly: false,
+export const retrieveUserService = async (
+  user: User
+): Promise<iUser | iUserNotAddress> => {
+  const userRepo: Repository<User> = AppDataSource.getRepository(User);
+
+  const address = await userRepo.findOne({
+    where: {
+      id: user.id,
+    },
+    relations: {
+      adresses: true,
+    },
   });
+
+  if (address?.adresses[0]) {
+    const addressComparation = {
+      ...address,
+      address: address?.adresses[0],
+    };
+
+    const userValidated: iUser = userResponseSchema.validateSync(
+      addressComparation,
+      {
+        stripUnknown: true,
+        abortEarly: false,
+      }
+    );
+    return userValidated;
+  }
+
+  const userValidated: iUserNotAddress =
+    userResponseSchemaNotAddress.validateSync(user, {
+      stripUnknown: true,
+      abortEarly: false,
+    });
   return userValidated;
 };
 

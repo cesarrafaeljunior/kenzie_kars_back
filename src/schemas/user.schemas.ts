@@ -1,6 +1,10 @@
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
-import { iUser, iUserRequest } from "../interfaces/user.interfaces";
+import {
+  iUser,
+  iUserNotAddress,
+  iUserRequest,
+} from "../interfaces/user.interfaces";
 
 const ensureIfIsLegalAge = (birthdate: Date) => {
   let date = new Date();
@@ -57,3 +61,18 @@ export const userResponseSchema: ObjectSchema<iUser> = yup.object().shape({
     complement: yup.string().required(),
   }),
 });
+
+export const userResponseSchemaNotAddress: ObjectSchema<iUserNotAddress> = yup
+  .object()
+  .shape({
+    updated_at: yup.date().required(),
+    created_at: yup.date().required(),
+    is_seller: yup.boolean().required(),
+    description: yup.string().required(),
+    birthdate: yup.date().required(),
+    phone_number: yup.string().required(),
+    cpf: yup.string().required(),
+    email: yup.string().email().required(),
+    name: yup.string().required(),
+    id: yup.string().required(),
+  });

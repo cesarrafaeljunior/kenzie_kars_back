@@ -27,3 +27,16 @@ export interface iUser {
   updated_at: Date;
   address: iAddress;
 }
+
+export interface iUserNotAddress {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phone_number: string;
+  birthdate: Date;
+  description: string;
+  is_seller: boolean;
+  created_at: Date;
+  updated_at: Date;
+}

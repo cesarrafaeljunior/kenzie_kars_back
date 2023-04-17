@@ -7,6 +7,8 @@ export interface iAddressRequest {
   complement: string;
 }
 
+export type iAddressUpdate = Partial<iAddressRequest>;
+
 export interface iAddress extends iAddressRequest {
   id: string;
 }

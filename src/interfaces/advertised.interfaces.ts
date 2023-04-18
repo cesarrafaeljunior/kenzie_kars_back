@@ -1,25 +1,15 @@
-import { iBrand } from "./brand.interfaces";
-import { iColor } from "./color.interface";
-import { iComment } from "./comment.interface";
-import { iFuel } from "./fuel.interface";
-import { iModel } from "./model.interface";
-import { iSellerGalery } from "./sellerGalery.interface";
-import { iUser } from "./user.interfaces";
-import { iYear } from "./year.interface";
+import { InferType } from "yup";
+import { advertisedResponseSchema } from "../schemas/advertisedcars.shemas";
 
-export interface iAdvertised {
-  id: string;
-  mileage: number;
-  price: number;
-  description: string;
-  cover_image: string;
-  location: string;
-  created_at: Date;
-  updated_at: Date;
-  is_avaliable: boolean;
-}
+export type iAdvertised = InferType<typeof advertisedResponseSchema>;
 
 export interface iAdvertisedRequest {
+  title: string;
+  brand: string;
+  model: string;
+  fuel: string;
+  color: string;
+  year: number;
   mileage: number;
   price: number;
   description: string;
@@ -30,6 +20,7 @@ export interface iAdvertisedRequest {
 
 export interface iAdvertisedRequestID {
   id: string;
+  title: string;
   mileage: number;
   price: number;
   description: string;

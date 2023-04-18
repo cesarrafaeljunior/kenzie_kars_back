@@ -12,25 +12,54 @@ import {
   advertisedResponseSchema,
   advertisedUpdateSchema,
 } from "../schemas/advertisedcars.shemas";
+import { Brand } from "../entities/brands.entity";
+import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
+import { Model } from "../entities/models.entity";
+import { Fuel } from "../entities/fuels.entity";
+import { Color } from "../entities/colors.entity";
+import { Year } from "../entities/years.entity";
 
 export const createAdvertisedService = async (
   user: User,
   advertisedData: iAdvertisedRequest
-): Promise<iAdvertisedRequest> => {
+): Promise<iAdvertised> => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
+  const { brand, model, fuel, color, year } = advertisedData;
+
+  const brandObj = await findOneByNameOrCreate(Brand, { brand });
+  const modelObj = await findOneByNameOrCreate(Model, { model });
+  const fuelObj = await findOneByNameOrCreate(Fuel, { fuel });
+  const colorObj = await findOneByNameOrCreate(Color, { color });
+  const yearObj = await findOneByNameOrCreate(Year, { year });
+
+  const { title, mileage, price, description, cover_image, location } =
+    advertisedData;
+
   const advertised: Advertised_car = advertisedRespository.create({
-    ...advertisedData,
+    title,
+    mileage,
+    price,
+    description,
+    cover_image,
+    location,
     user: user,
+    brand: brandObj,
+    model: modelObj,
+    fuel: fuelObj,
+    color: colorObj,
+    year: yearObj,
   });
   await advertisedRespository.save(advertised);
 
-  const advertisedValidated: iAdvertised =
-    advertisedResponseSchema.validateSync(advertised, {
+  const advertisedValidated = advertisedResponseSchema.validateSync(
+    advertised,
+    {
       stripUnknown: true,
       abortEarly: false,
-    });
+    }
+  );
 
   return advertisedValidated;
 };
@@ -70,30 +99,32 @@ export const editAdvertisedService = async (
   advertisedId: string,
   advertisedData: iAdvertisedUpdate
 ) => {
-  const advertisedRespository: Repository<Advertised_car> =
-    AppDataSource.getRepository(Advertised_car);
+  throw new AppError("Under maintenance!", 500);
 
-  const oldAdvertisedData = await advertisedRespository.findOneBy({
-    id: advertisedId,
-  });
+  // const advertisedRespository: Repository<Advertised_car> =
+  //   AppDataSource.getRepository(Advertised_car);
 
-  if (!oldAdvertisedData) {
-    throw new AppError("advertise not found ", 404);
-  }
-  const advertised = advertisedRespository.create({
-    ...oldAdvertisedData,
-    ...advertisedData,
-  });
+  // const oldAdvertisedData = await advertisedRespository.findOneBy({
+  //   id: advertisedId,
+  // });
 
-  await advertisedRespository.save(advertised);
+  // if (!oldAdvertisedData) {
+  //   throw new AppError("advertise not found ", 404);
+  // }
+  // const advertised = advertisedRespository.create({
+  //   ...oldAdvertisedData,
+  //   ...advertisedData,
+  // });
 
-  const advertisedValidated: iAdvertisedUpdate =
-    advertisedUpdateSchema.validateSync(advertised, {
-      stripUnknown: true,
-      abortEarly: false,
-    });
+  // await advertisedRespository.save(advertised);
 
-  return advertisedValidated;
+  // const advertisedValidated: iAdvertisedUpdate =
+  //   advertisedUpdateSchema.validateSync(advertised, {
+  //     stripUnknown: true,
+  //     abortEarly: false,
+  //   });
+
+  // return advertisedValidated;
 };
 
 export const deleteAdvertisedService = async (

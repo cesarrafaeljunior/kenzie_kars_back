@@ -110,9 +110,9 @@ export const retrieveUserService = async (
 export const editUserService = async (
   body: iUserUpdate,
   user: User
-): Promise<iUser> => {
-  const userRepo = AppDataSource.getRepository(User);
-
+): Promise<iUserNotAddress> => {
+  const userRepo: Repository<User> = AppDataSource.getRepository(User);
+  console.log(user);
   if (body.email) {
     await userRepo.findOneBy({ email: body.email }).then((res) => {
       if (res?.id) {
@@ -142,10 +142,11 @@ export const editUserService = async (
   user = userRepo.create({ ...user, ...body });
   await userRepo.save(user);
 
-  const userValidated: iUser = userResponseSchema.validateSync(user, {
-    stripUnknown: true,
-    abortEarly: false,
-  });
+  const userValidated: iUserNotAddress =
+    userResponseSchemaNotAddress.validateSync(user, {
+      stripUnknown: true,
+      abortEarly: false,
+    });
 
   return userValidated;
 };

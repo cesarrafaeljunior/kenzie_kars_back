@@ -21,6 +21,9 @@ export class Advertised_car {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ length: 100 })
+  title: string;
+
   @Column()
   mileage: number;
 

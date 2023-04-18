@@ -1,6 +1,6 @@
-import { iAdvertised } from "./advertised.interfaces"
+import { iAdvertised } from "./advertised.interfaces";
 
 export interface iFuel {
-	adverts: iAdvertised[]
-	fuel: string
+  adverts: iAdvertised[];
+  fuel: string;
 }

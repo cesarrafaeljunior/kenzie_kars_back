@@ -3,12 +3,12 @@ import { Contact } from "../../entities/contact.entity";
 import { User } from "../../entities/users.entity";
 
 declare global {
-    namespace Express {
-        interface Request {
-            paramUser: User;
-            authUser: User;
-        }
+  namespace Express {
+    interface Request {
+      paramUser: User;
+      authUser: User;
     }
+  }
 }
 
 export {};

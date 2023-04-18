@@ -8,34 +8,34 @@ import { iUser } from "./user.interfaces";
 import { iYear } from "./year.interface";
 
 export interface iAdvertised {
-	id: string;
-	mileage: number;
-	price: number;
-	description: string;
-	cover_image: string;
-	location: string;
-	created_at: Date;
-	updated_at: Date;
-	is_avaliable: boolean;
+  id: string;
+  mileage: number;
+  price: number;
+  description: string;
+  cover_image: string;
+  location: string;
+  created_at: Date;
+  updated_at: Date;
+  is_avaliable: boolean;
 }
 
 export interface iAdvertisedRequest {
-	mileage: number;
-	price: number;
-	description: string;
-	cover_image: string;
-	location: string;
-	is_avaliable: boolean;
+  mileage: number;
+  price: number;
+  description: string;
+  cover_image: string;
+  location: string;
+  is_avaliable: boolean;
 }
 
 export interface iAdvertisedRequestID {
-	id: string;
-	mileage: number;
-	price: number;
-	description: string;
-	cover_image: string;
-	location: string;
-	is_avaliable: boolean;
+  id: string;
+  mileage: number;
+  price: number;
+  description: string;
+  cover_image: string;
+  location: string;
+  is_avaliable: boolean;
 }
 
 export type iAdvertisedUpdate = Partial<iAdvertised>;

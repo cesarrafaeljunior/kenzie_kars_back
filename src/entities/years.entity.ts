@@ -3,12 +3,12 @@ import { Advertised_car } from "./adverts.entity";
 
 @Entity("years")
 export class Year {
-    @PrimaryGeneratedColumn()
-    id: string;
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @OneToMany(() => Advertised_car, (advert) => advert.year)
-    adverts: Advertised_car[];
+  @OneToMany(() => Advertised_car, (advert) => advert.year)
+  adverts: Advertised_car[];
 
-    @Column()
-    year: Number;
+  @Column()
+  year: Number;
 }

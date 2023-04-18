@@ -1,3 +1,4 @@
+import { DeepPartial } from "typeorm";
 import { iAddress, iAddressRequest } from "./address.interface";
 
 export interface iUserRequest {
@@ -12,7 +13,7 @@ export interface iUserRequest {
   address: iAddressRequest;
 }
 
-export type iUserUpdate = Partial<iUserRequest>;
+export type iUserUpdate = DeepPartial<iUserRequest>;
 
 export interface iUser {
   id: string;

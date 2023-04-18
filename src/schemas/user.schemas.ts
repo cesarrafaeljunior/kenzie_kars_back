@@ -7,11 +7,15 @@ import {
 } from "../interfaces/user.interfaces";
 
 const ensureIfIsLegalAge = (birthdate: Date) => {
+  if (!birthdate) {
+    return true;
+  }
   let date = new Date();
   date = new Date(date.getFullYear() - 18, date.getMonth(), date.getDate());
   birthdate = new Date(birthdate);
   // @ts-expect-error
-  return date - birthdate > 0 ? true : false;
+
+  return date - birthdate > 18 ? true : false;
 };
 
 export const userRequestSchema: ObjectSchema<iUserRequest> = yup
@@ -28,7 +32,7 @@ export const userRequestSchema: ObjectSchema<iUserRequest> = yup
     description: yup.string().required(),
     password: yup.string().required(),
     is_seller: yup.boolean().required(),
-    address: yup.object().shape({
+    address: yup.object({
       cep: yup.string().max(8).required(),
       state: yup.string().max(2).required(),
       city: yup.string().max(50).required(),
@@ -38,7 +42,7 @@ export const userRequestSchema: ObjectSchema<iUserRequest> = yup
     }),
   });
 
-export const userUpdateSchema = userRequestSchema.partial();
+export const userUpdateSchema = userRequestSchema.deepPartial();
 
 export const userResponseSchema: ObjectSchema<iUser> = yup.object().shape({
   updated_at: yup.date().required(),

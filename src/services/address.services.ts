@@ -3,10 +3,14 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities/users.entity";
 import { Address } from "../entities/adresses.entity";
 import {
+  iAddress,
   iAddressRequest,
   iAddressUpdate,
 } from "../interfaces/address.interface";
 import { AppError } from "../errors";
+import { iUserRequest } from "../interfaces/user.interfaces";
+import { userResponseSchema } from "../schemas/user.schemas";
+import { addressResponseSchema } from "../schemas/addess.schemas";
 
 export const createAddressService = async (
   addressBody: iAddressRequest,
@@ -15,16 +19,15 @@ export const createAddressService = async (
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
   const addressRepo: Repository<Address> = AppDataSource.getRepository(Address);
 
-  const userAddress = await userRepo.findOne({
+  const userAddress = await addressRepo.findOne({
     where: {
-      id: user.id,
-    },
-    relations: {
-      adresses: true,
+      user: {
+        id: user.id,
+      },
     },
   });
 
-  if (userAddress?.adresses[0]) {
+  if (userAddress) {
     throw new AppError("User already has an address ", 401);
   }
 
@@ -35,7 +38,12 @@ export const createAddressService = async (
 
   await addressRepo.save(newAddres);
 
-  return newAddres;
+  const validateAddress = addressResponseSchema.validateSync(newAddres, {
+    stripUnknown: true,
+    abortEarly: false,
+  });
+
+  return validateAddress;
 };
 
 export const retrieveAddressUserService = async (user: User) => {

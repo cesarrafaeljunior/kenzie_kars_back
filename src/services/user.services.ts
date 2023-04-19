@@ -57,8 +57,8 @@ export const createUserService = async (body: iUserRequest): Promise<any> => {
   const address = await addressRepo.save(newAddres);
 
   const response = {
-    address: address,
     ...user,
+    address: address,
   };
 
   const userValidated: iUser = userResponseSchema.validateSync(response, {
@@ -79,14 +79,14 @@ export const retrieveUserService = async (
       id: user.id,
     },
     relations: {
-      adresses: true,
+      address: true,
     },
   });
 
-  if (address?.adresses[0]) {
+  if (address?.address) {
     const addressComparation = {
       ...address,
-      address: address?.adresses[0],
+      address: address?.address,
     };
 
     const userValidated: iUser = userResponseSchema.validateSync(
@@ -112,7 +112,7 @@ export const editUserService = async (
   user: User
 ): Promise<iUserNotAddress> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
-  console.log(user);
+
   if (body.email) {
     await userRepo.findOneBy({ email: body.email }).then((res) => {
       if (res?.id) {

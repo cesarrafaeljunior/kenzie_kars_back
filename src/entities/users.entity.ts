@@ -7,6 +7,7 @@ import {
   DeleteDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -61,8 +62,8 @@ export class User {
   @OneToMany(() => Advertised_car, (advert) => advert.user)
   adverts: Advertised_car[];
 
-  @OneToMany(() => Address, (address) => address.user)
-  adresses: Address[];
+  @OneToOne(() => Address, (address) => address.user)
+  address: Address;
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];

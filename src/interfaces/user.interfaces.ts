@@ -1,4 +1,3 @@
-import { DeepPartial } from "typeorm";
 import { iAddress, iAddressRequest } from "./address.interface";
 
 export interface iUserRequest {
@@ -13,7 +12,7 @@ export interface iUserRequest {
   address: iAddressRequest;
 }
 
-export type iUserUpdate = DeepPartial<iUserRequest>;
+export type iUserUpdate = Partial<Omit<iUserRequest, "address">>;
 
 export interface iUser {
   id: string;
@@ -29,15 +28,4 @@ export interface iUser {
   address: iAddress;
 }
 
-export interface iUserNotAddress {
-  id: string;
-  name: string;
-  email: string;
-  cpf: string;
-  phone_number: string;
-  birthdate: Date;
-  description: string;
-  is_seller: boolean;
-  created_at: Date;
-  updated_at: Date;
-}
+export type iUserNotAddress = Omit<iUser, "address">;

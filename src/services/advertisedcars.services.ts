@@ -98,33 +98,69 @@ export const retrieveAllAdvertisedService = async () => {
 export const editAdvertisedService = async (
   advertisedId: string,
   advertisedData: iAdvertisedUpdate
-) => {
-  throw new AppError("Under maintenance!", 500);
+): Promise<iAdvertised> => {
+  const advertisedRespository: Repository<Advertised_car> =
+    AppDataSource.getRepository(Advertised_car);
 
-  // const advertisedRespository: Repository<Advertised_car> =
-  //   AppDataSource.getRepository(Advertised_car);
+  const oldAdvertisedData = await advertisedRespository
+    .findOneOrFail({
+      where: {
+        id: advertisedId,
+      },
+      relations: {
+        brand: true,
+        model: true,
+        fuel: true,
+        color: true,
+        year: true,
+      },
+    })
+    .catch(() => {
+      throw new AppError("advertise not found ", 404);
+    });
 
-  // const oldAdvertisedData = await advertisedRespository.findOneBy({
-  //   id: advertisedId,
-  // });
+  const { brand, model, fuel, color, year } = advertisedData;
+  let advertiseComplete = {};
 
-  // if (!oldAdvertisedData) {
-  //   throw new AppError("advertise not found ", 404);
-  // }
-  // const advertised = advertisedRespository.create({
-  //   ...oldAdvertisedData,
-  //   ...advertisedData,
-  // });
+  brand &&
+    (await findOneByNameOrCreate(Brand, { brand }).then(
+      (res) => (advertiseComplete = { ...advertiseComplete, brand: res })
+    ));
+  model &&
+    (await findOneByNameOrCreate(Model, { model }).then(
+      (res) => (advertiseComplete = { ...advertiseComplete, model: res })
+    ));
+  fuel &&
+    (await findOneByNameOrCreate(Fuel, { fuel }).then(
+      (res) => (advertiseComplete = { ...advertiseComplete, fuel: res })
+    ));
+  color &&
+    (await findOneByNameOrCreate(Color, { color }).then(
+      (res) => (advertiseComplete = { ...advertiseComplete, color: res })
+    ));
+  year &&
+    (await findOneByNameOrCreate(Year, { year }).then(
+      (res) => (advertiseComplete = { ...advertiseComplete, year: res })
+    ));
 
-  // await advertisedRespository.save(advertised);
+  advertiseComplete = { ...advertisedData, ...advertiseComplete };
 
-  // const advertisedValidated: iAdvertisedUpdate =
-  //   advertisedUpdateSchema.validateSync(advertised, {
-  //     stripUnknown: true,
-  //     abortEarly: false,
-  //   });
+  const advertised: Advertised_car = advertisedRespository.create({
+    ...oldAdvertisedData,
+    ...advertiseComplete,
+  });
 
-  // return advertisedValidated;
+  await advertisedRespository.save(advertised);
+
+  const advertisedValidated = advertisedResponseSchema.validateSync(
+    advertised,
+    {
+      stripUnknown: true,
+      abortEarly: false,
+    }
+  );
+
+  return advertisedValidated;
 };
 
 export const deleteAdvertisedService = async (

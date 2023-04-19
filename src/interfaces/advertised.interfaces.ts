@@ -29,4 +29,4 @@ export interface iAdvertisedRequestID {
   is_avaliable: boolean;
 }
 
-export type iAdvertisedUpdate = Partial<iAdvertised>;
+export type iAdvertisedUpdate = Partial<iAdvertisedRequest>;

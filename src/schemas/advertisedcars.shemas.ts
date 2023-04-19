@@ -1,9 +1,6 @@
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
-import {
-  iAdvertised,
-  iAdvertisedRequest,
-} from "../interfaces/advertised.interfaces";
+import { iAdvertisedRequest } from "../interfaces/advertised.interfaces";
 
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
   .object()
@@ -22,7 +19,13 @@ export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
     is_avaliable: yup.boolean().required().default(true),
   });
 
-export const advertisedUpdateSchema = advertisedRequestSchema.partial();
+export const advertisedUpdateSchema = advertisedRequestSchema
+  .concat(
+    yup.object().shape({
+      is_avaliable: yup.boolean().required(),
+    })
+  )
+  .partial();
 
 export const advertisedResponseSchema = yup.object().shape({
   updated_at: yup.date().required(),

@@ -3,20 +3,16 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities/users.entity";
 import { Address } from "../entities/adresses.entity";
 import {
-  iAddress,
   iAddressRequest,
   iAddressUpdate,
 } from "../interfaces/address.interface";
 import { AppError } from "../errors";
-import { iUserRequest } from "../interfaces/user.interfaces";
-import { userResponseSchema } from "../schemas/user.schemas";
 import { addressResponseSchema } from "../schemas/addess.schemas";
 
 export const createAddressService = async (
   addressBody: iAddressRequest,
   user: User
 ) => {
-  const userRepo: Repository<User> = AppDataSource.getRepository(User);
   const addressRepo: Repository<Address> = AppDataSource.getRepository(Address);
 
   const userAddress = await addressRepo.findOne({

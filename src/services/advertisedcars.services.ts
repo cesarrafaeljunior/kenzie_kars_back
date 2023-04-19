@@ -8,7 +8,12 @@ import {
 import { Repository } from "typeorm";
 import { User } from "../entities/users.entity";
 import { Advertised_car } from "../entities/adverts.entity";
-import { advertisedResponseSchema } from "../schemas/advertisedcars.shemas";
+import {
+  advertiseListByUserResponseSchema,
+  advertisedListResponseSchema,
+  advertisedResponseSchema,
+  advertisedResponseSchemaNotUser,
+} from "../schemas/advertisedcars.shemas";
 import { Brand } from "../entities/brands.entity";
 import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
 import { Model } from "../entities/models.entity";
@@ -52,10 +57,7 @@ export const createAdvertisedService = async (
 
   const advertisedValidated = advertisedResponseSchema.validateSync(
     advertised,
-    {
-      stripUnknown: true,
-      abortEarly: false,
-    }
+    { stripUnknown: true, abortEarly: false }
   );
 
   return advertisedValidated;
@@ -69,7 +71,13 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
       id: userId,
     },
     relations: {
-      adverts: true,
+      adverts: {
+        brand: true,
+        model: true,
+        fuel: true,
+        color: true,
+        year: true,
+      },
     },
   });
 
@@ -77,44 +85,43 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
     throw new AppError("user not found ", 404);
   }
 
-  return advertised;
+  const advertisedValidated = advertiseListByUserResponseSchema.validateSync(
+    advertised,
+    { stripUnknown: true, abortEarly: false }
+  );
+
+  return advertisedValidated;
 };
 
 export const retrieveAllAdvertisedService = async () => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
-  const advertisedList = advertisedRespository.find({
+  const advertisedList = await advertisedRespository.find({
     relations: {
       user: true,
+      brand: true,
+      model: true,
+      fuel: true,
+      color: true,
+      year: true,
     },
   });
-  return advertisedList;
+
+  const advertiseValidated = advertisedListResponseSchema.validateSync(
+    advertisedList,
+    { abortEarly: false, stripUnknown: true }
+  );
+
+  return advertiseValidated;
 };
 
 export const editAdvertisedService = async (
-  advertisedId: string,
+  oldAdvertiseObj: Advertised_car,
   advertisedData: iAdvertisedUpdate
-): Promise<iAdvertised> => {
+) => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
-
-  const oldAdvertisedData = await advertisedRespository
-    .findOneOrFail({
-      where: {
-        id: advertisedId,
-      },
-      relations: {
-        brand: true,
-        model: true,
-        fuel: true,
-        color: true,
-        year: true,
-      },
-    })
-    .catch(() => {
-      throw new AppError("advertise not found ", 404);
-    });
 
   const { brand, model, fuel, color, year } = advertisedData;
   let advertiseComplete = {};
@@ -143,7 +150,7 @@ export const editAdvertisedService = async (
   advertiseComplete = { ...advertisedData, ...advertiseComplete };
 
   const advertised: Advertised_car = advertisedRespository.create({
-    ...oldAdvertisedData,
+    ...oldAdvertiseObj,
     ...advertiseComplete,
   });
 
@@ -151,31 +158,19 @@ export const editAdvertisedService = async (
 
   const advertisedValidated = advertisedResponseSchema.validateSync(
     advertised,
-    {
-      stripUnknown: true,
-      abortEarly: false,
-    }
+    { stripUnknown: true, abortEarly: false }
   );
 
   return advertisedValidated;
 };
 
 export const deleteAdvertisedService = async (
-  idAdvertised: string
+  advertiseObj: Advertised_car
 ): Promise<void> => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
-  const advertised = await advertisedRespository.findOne({
-    where: {
-      id: idAdvertised,
-    },
-  });
-
-  if (!advertised) {
-    throw new AppError("advertise not found ", 404);
-  }
-  await advertisedRespository.remove(advertised);
+  await advertisedRespository.remove(advertiseObj);
 
   return;
 };

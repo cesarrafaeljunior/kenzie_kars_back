@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
 import { iAdvertisedRequest } from "../interfaces/advertised.interfaces";
+import { userResponseSchemaNotAddress } from "./user.schemas";
 
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
   .object()
@@ -27,7 +28,7 @@ export const advertisedUpdateSchema = advertisedRequestSchema
   )
   .partial();
 
-export const advertisedResponseSchema = yup.object().shape({
+export const advertisedResponseSchemaNotUser = yup.object().shape({
   updated_at: yup.date().required(),
   created_at: yup.date().required(),
   is_avaliable: yup.boolean().required(),
@@ -44,3 +45,20 @@ export const advertisedResponseSchema = yup.object().shape({
   title: yup.string().required(),
   id: yup.string().required(),
 });
+
+export const advertisedResponseSchema = advertisedResponseSchemaNotUser.concat(
+  yup.object().shape({
+    user: userResponseSchemaNotAddress,
+  })
+);
+
+export const advertisedListResponseSchema = yup
+  .array()
+  .of(advertisedResponseSchema);
+
+export const advertiseListByUserResponseSchema =
+  userResponseSchemaNotAddress.concat(
+    yup.object().shape({
+      adverts: yup.array().of(advertisedResponseSchemaNotUser),
+    })
+  );

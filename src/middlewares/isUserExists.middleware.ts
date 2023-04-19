@@ -9,7 +9,7 @@ export const isUserExistsMiddleware = async (
   next: NextFunction
 ) => {
   const user = await AppDataSource.getRepository(User)
-    .findOneByOrFail({ id: req.params.id })
+    .findOneByOrFail({ id: req.params.userId })
     .catch(() => {
       throw new AppError("User not found", 404);
     });

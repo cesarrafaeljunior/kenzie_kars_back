@@ -18,20 +18,20 @@ userRoutes.post(
   createUserController
 );
 userRoutes.get(
-  "/:id",
+  "/:userId",
   verifyTokenMiddleware,
   isUserExistsMiddleware,
   retrieveUserController
 );
 userRoutes.patch(
-  "/:id",
+  "/:userId",
   verifyTokenMiddleware,
   isUserExistsMiddleware,
   bodyValidateMiddleware(userUpdateSchema),
   editUserController
 );
 userRoutes.delete(
-  "/:id",
+  "/:userId",
   verifyTokenMiddleware,
   isUserExistsMiddleware,
   deleteUserController

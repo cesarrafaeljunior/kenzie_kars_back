@@ -17,11 +17,14 @@ import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
 export const advertisedRoutes = Router();
 
 advertisedRoutes.get("", retrieveAllAdvertisedController);
-advertisedRoutes.get("/:userId/", retrieveAdvertisedByUserController);
+advertisedRoutes.get(
+  "/users/:userId/",
+  isUserExistsMiddleware,
+  retrieveAdvertisedByUserController
+);
 advertisedRoutes.post(
   "",
   verifyTokenMiddleware,
-  isUserExistsMiddleware,
   bodyValidateMiddleware(advertisedRequestSchema),
   createAdvertisedController
 );

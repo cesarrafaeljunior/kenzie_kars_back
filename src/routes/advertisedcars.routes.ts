@@ -13,6 +13,7 @@ import {
 } from "../controllers/advertisedcars.controllers";
 import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
 import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
+import { isAdvertiseExistsMiddleware } from "../middlewares/isAdvertiseExists.middleware";
 
 export const advertisedRoutes = Router();
 
@@ -29,13 +30,15 @@ advertisedRoutes.post(
   createAdvertisedController
 );
 advertisedRoutes.patch(
-  "/:id/",
+  "/:advertId/",
   verifyTokenMiddleware,
+  isAdvertiseExistsMiddleware,
   bodyValidateMiddleware(advertisedUpdateSchema),
   editAdvertisedController
 );
 advertisedRoutes.delete(
-  "/:id/",
+  "/:advertId/",
   verifyTokenMiddleware,
+  isAdvertiseExistsMiddleware,
   deleteAdvertisedontroller
 );

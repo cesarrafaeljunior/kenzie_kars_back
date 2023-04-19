@@ -42,9 +42,9 @@ export const editAdvertisedController = async (
   res: Response
 ): Promise<Response> => {
   const advertisedData = req.body;
-  const advertisedId = req.params.id;
+  const paramAdvertise = req.paramAdvertise;
   const newaAvertised = await editAdvertisedService(
-    advertisedId,
+    paramAdvertise,
     advertisedData
   );
 
@@ -55,7 +55,7 @@ export const deleteAdvertisedontroller = async (
   req: Request,
   res: Response
 ) => {
-  await deleteAdvertisedService(req.params.id);
+  await deleteAdvertisedService(req.paramAdvertise);
 
   return res.status(204).send();
 };

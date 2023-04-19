@@ -22,7 +22,7 @@ export const retrieveAdvertisedByUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId = req.params.id;
+  const userId = req.paramUser.id;
   const advertisedData = await retrieveAdvertisedByUserService(userId);
 
   return res.json(advertisedData);
@@ -48,7 +48,7 @@ export const editAdvertisedController = async (
     advertisedData
   );
 
-  return res.status(201).json(newaAvertised);
+  return res.status(200).json(newaAvertised);
 };
 
 export const deleteAdvertisedontroller = async (

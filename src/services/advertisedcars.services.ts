@@ -8,10 +8,7 @@ import {
 import { Repository } from "typeorm";
 import { User } from "../entities/users.entity";
 import { Advertised_car } from "../entities/adverts.entity";
-import {
-  advertisedResponseSchema,
-  advertisedUpdateSchema,
-} from "../schemas/advertisedcars.shemas";
+import { advertisedResponseSchema } from "../schemas/advertisedcars.shemas";
 import { Brand } from "../entities/brands.entity";
 import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
 import { Model } from "../entities/models.entity";
@@ -178,7 +175,7 @@ export const deleteAdvertisedService = async (
   if (!advertised) {
     throw new AppError("advertise not found ", 404);
   }
-  await advertisedRespository.remove(advertised!);
+  await advertisedRespository.remove(advertised);
 
   return;
 };

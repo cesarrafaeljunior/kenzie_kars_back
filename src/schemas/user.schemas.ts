@@ -34,6 +34,10 @@ const userRequestSchemaNotAddress: ObjectSchema<Omit<iUserRequest, "address">> =
       .test("Legal age", "Come back when you're 18 years", ensureIfIsLegalAge),
     description: yup.string().required(),
     password: yup.string().required(),
+    confirm_password: yup
+      .string()
+      .oneOf([yup.ref("password")], "Passwords are not the same. Try again!")
+      .required(),
     is_seller: yup.boolean().required(),
   });
 

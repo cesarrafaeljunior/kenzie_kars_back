@@ -12,7 +12,6 @@ import {
   advertiseListByUserResponseSchema,
   advertisedListResponseSchema,
   advertisedResponseSchema,
-  advertisedResponseSchemaNotUser,
 } from "../schemas/advertisedcars.shemas";
 import { Brand } from "../entities/brands.entity";
 import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
@@ -56,7 +55,7 @@ export const createAdvertisedService = async (
   await advertisedRespository.save(advertised);
 
   const advertisedValidated = advertisedResponseSchema.validateSync(
-    advertised,
+    { ...advertised, galery: [] },
     { stripUnknown: true, abortEarly: false }
   );
 
@@ -77,6 +76,7 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
         fuel: true,
         color: true,
         year: true,
+        galery: true,
       },
     },
   });
@@ -105,6 +105,7 @@ export const retrieveAllAdvertisedService = async () => {
       fuel: true,
       color: true,
       year: true,
+      galery: true,
     },
   });
 

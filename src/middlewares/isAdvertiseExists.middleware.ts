@@ -18,6 +18,7 @@ export const isAdvertiseExistsMiddleware = async (
         fuel: true,
         color: true,
         year: true,
+        galery: true,
       },
     })
     .catch(() => {

@@ -9,6 +9,8 @@ export class SellerGalery {
   @Column({ length: 300 })
   image: string;
 
-  @ManyToOne(() => Advertised_car, (advert) => advert.galery, { cascade: true })
+  @ManyToOne(() => Advertised_car, (advert) => advert.galery, {
+    onDelete: "CASCADE",
+  })
   advert: Advertised_car;
 }

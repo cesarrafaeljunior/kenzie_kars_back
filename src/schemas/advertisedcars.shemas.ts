@@ -28,7 +28,15 @@ export const advertisedUpdateSchema = advertisedRequestSchema
   )
   .partial();
 
+const galeryResponseSchema = yup.array().of(
+  yup.object().shape({
+    id: yup.number().required(),
+    image: yup.string().required(),
+  })
+);
+
 export const advertisedResponseSchemaNotUser = yup.object().shape({
+  galery: galeryResponseSchema,
   updated_at: yup.date().required(),
   created_at: yup.date().required(),
   is_avaliable: yup.boolean().required(),

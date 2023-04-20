@@ -13,7 +13,7 @@ import {
 } from "typeorm";
 import { Advertised_car } from "./adverts.entity";
 import { Address } from "./adresses.entity";
-import { Comment } from "./comments";
+import { Comment } from "./comments.entity";
 
 @Entity("users")
 export class User {

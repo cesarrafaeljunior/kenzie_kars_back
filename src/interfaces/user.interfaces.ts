@@ -8,6 +8,7 @@ export interface iUserRequest {
   birthdate: Date;
   description: string;
   password: string;
+  confirm_password: string;
   is_seller: boolean;
   address: iAddressRequest;
 }

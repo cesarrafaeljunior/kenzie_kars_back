@@ -27,7 +27,7 @@ export class Comment {
   user: User;
 
   @ManyToOne(() => Advertised_car, (advert) => advert.comments, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
   advert: Advertised_car;
 }

@@ -13,7 +13,7 @@ import { Model } from "./models.entity";
 import { Fuel } from "./fuels.entity";
 import { Color } from "./colors.entity";
 import { Brand } from "./brands.entity";
-import { Comment } from "./comments";
+import { Comment } from "./comments.entity";
 import { SellerGalery } from "./sellerGalery.entity";
 
 @Entity("advertised_cars")
@@ -48,22 +48,22 @@ export class Advertised_car {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => User, (user) => user.adverts, { cascade: true })
+  @ManyToOne(() => User, (user) => user.adverts, { onDelete: "CASCADE" })
   user: User;
 
-  @ManyToOne(() => Year, (year) => year.adverts, { cascade: true })
+  @ManyToOne(() => Year, (year) => year.adverts, { onDelete: "CASCADE" })
   year: Year;
 
-  @ManyToOne(() => Model, (model) => model.adverts, { cascade: true })
+  @ManyToOne(() => Model, (model) => model.adverts, { onDelete: "CASCADE" })
   model: Model;
 
-  @ManyToOne(() => Fuel, (fuel) => fuel.adverts, { cascade: true })
+  @ManyToOne(() => Fuel, (fuel) => fuel.adverts, { onDelete: "CASCADE" })
   fuel: Fuel;
 
-  @ManyToOne(() => Color, (color) => color.adverts, { cascade: true })
+  @ManyToOne(() => Color, (color) => color.adverts, { onDelete: "CASCADE" })
   color: Color;
 
-  @ManyToOne(() => Brand, (brand) => brand.adverts, { cascade: true })
+  @ManyToOne(() => Brand, (brand) => brand.adverts, { onDelete: "CASCADE" })
   brand: Brand;
 
   @OneToMany(() => SellerGalery, (galery) => galery.advert)

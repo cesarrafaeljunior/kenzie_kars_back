@@ -11,6 +11,14 @@ export const createUserController = async (req: Request, res: Response) => {
   return res.status(201).json(user);
 };
 
+export const retrieveUserProfileController = async (
+  req: Request,
+  res: Response
+) => {
+  const user = await retrieveUserService(req.authUser);
+  return res.status(200).json(user);
+};
+
 export const retrieveUserController = async (req: Request, res: Response) => {
   const user = await retrieveUserService(req.paramUser);
   return res.status(200).json(user);

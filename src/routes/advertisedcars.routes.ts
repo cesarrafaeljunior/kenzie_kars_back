@@ -9,6 +9,7 @@ import {
   deleteAdvertisedontroller,
   editAdvertisedController,
   retrieveAdvertisedByUserController,
+  retrieveAdvertisedController,
   retrieveAllAdvertisedController,
 } from "../controllers/advertisedcars.controllers";
 import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
@@ -18,16 +19,21 @@ import { isAdvertiseExistsMiddleware } from "../middlewares/isAdvertiseExists.mi
 export const advertisedRoutes = Router();
 
 advertisedRoutes.get("", retrieveAllAdvertisedController);
-advertisedRoutes.get(
-  "/users/:userId/",
-  isUserExistsMiddleware,
-  retrieveAdvertisedByUserController
-);
 advertisedRoutes.post(
   "",
   verifyTokenMiddleware,
   bodyValidateMiddleware(advertisedRequestSchema),
   createAdvertisedController
+);
+advertisedRoutes.get(
+  "/users/:userId/",
+  isUserExistsMiddleware,
+  retrieveAdvertisedByUserController
+);
+advertisedRoutes.get(
+  "/:advertId/",
+  isAdvertiseExistsMiddleware,
+  retrieveAdvertisedController
 );
 advertisedRoutes.patch(
   "/:advertId/",

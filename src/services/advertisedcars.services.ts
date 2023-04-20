@@ -93,6 +93,15 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
   return advertisedValidated;
 };
 
+export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
+  const advertisedValidated = advertisedResponseSchema.validateSync(advertise, {
+    stripUnknown: true,
+    abortEarly: false,
+  });
+
+  return advertisedValidated;
+};
+
 export const retrieveAllAdvertisedService = async () => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);

@@ -10,7 +10,7 @@ import { addressRoutes } from "./routes/address.routes";
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: ["localhost:3000"] }));
+app.use(cors());
 
 app.use("/login", loginRoutes);
 app.use("/users", userRoutes);

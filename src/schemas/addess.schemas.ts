@@ -1,17 +1,32 @@
 import { ObjectSchema } from "yup";
 import * as yup from "yup";
-import { iAddress } from "../interfaces/address.interface";
+import { iAddress, iAddressRequest } from "../interfaces/address.interface";
 
-export const addressResponseSchema: ObjectSchema<iAddress> = yup
+export const addressRequestSchema: ObjectSchema<iAddressRequest> = yup
   .object()
   .shape({
-    id: yup.string().required(),
-    cep: yup.string().required(),
+    cep: yup.string().length(8).required(),
+    state: yup.string().max(2).required(),
+    city: yup.string().max(50).required(),
+    street: yup.string().max(80).required(),
+    number: yup.string().max(10).nullable().required(),
+    complement: yup.string().nullable().required(),
+  });
+
+export const addressResponseSchemaNotUser: ObjectSchema<iAddress> = yup
+  .object()
+  .shape({
+    complement: yup.string().nullable().required(),
+    number: yup.string().nullable().required(),
+    street: yup.string().required(),
     state: yup.string().required(),
     city: yup.string().required(),
-    street: yup.string().required(),
-    number: yup.string().required(),
-    complement: yup.string().required(),
+    cep: yup.string().required(),
+    id: yup.string().required(),
+  });
+
+export const addressResponseSchema = addressResponseSchemaNotUser.concat(
+  yup.object().shape({
     user: yup.object({
       is_seller: yup.boolean().required(),
       phone_number: yup.string().required(),
@@ -20,4 +35,5 @@ export const addressResponseSchema: ObjectSchema<iAddress> = yup
       name: yup.string().required(),
       id: yup.string().required(),
     }),
-  });
+  })
+);

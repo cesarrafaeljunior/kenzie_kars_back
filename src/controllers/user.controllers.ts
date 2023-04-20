@@ -18,7 +18,6 @@ export const retrieveUserController = async (req: Request, res: Response) => {
 
 export const editUserController = async (req: Request, res: Response) => {
   const user = await editUserService(req.body, req.paramUser);
-
   return res.status(200).json(user);
 };
 

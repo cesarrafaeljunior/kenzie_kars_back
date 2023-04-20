@@ -3,12 +3,12 @@ import { Advertised_car } from "./adverts.entity";
 
 @Entity("fuels")
 export class Fuel {
-    @PrimaryGeneratedColumn()
-    id: string;
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @OneToMany(() => Advertised_car, (advert) => advert.fuel)
-    adverts: Advertised_car[];
+  @OneToMany(() => Advertised_car, (advert) => advert.fuel)
+  adverts: Advertised_car[];
 
-    @Column({ length: 20 })
-    fuel: string;
+  @Column({ length: 20 })
+  fuel: string;
 }

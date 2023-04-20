@@ -3,8 +3,8 @@ export interface iAddressRequest {
   state: string;
   city: string;
   street: string;
-  number: string;
-  complement: string;
+  number?: string;
+  complement?: string;
 }
 
 export type iAddressUpdate = Partial<iAddressRequest>;

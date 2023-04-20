@@ -4,6 +4,7 @@ import {
   deleteAdvertisedService,
   editAdvertisedService,
   retrieveAdvertisedByUserService,
+  retrieveAdvertisedService,
   retrieveAllAdvertisedService,
 } from "../services/advertisedcars.services";
 
@@ -26,6 +27,13 @@ export const retrieveAdvertisedByUserController = async (
   const advertisedData = await retrieveAdvertisedByUserService(userId);
 
   return res.json(advertisedData);
+};
+export const retrieveAdvertisedController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const avertised = await retrieveAdvertisedService(req.paramAdvertise);
+  return res.status(200).json(avertised);
 };
 
 export const retrieveAllAdvertisedController = async (

@@ -4,6 +4,7 @@ import {
   deleteUserController,
   editUserController,
   retrieveUserController,
+  retrieveUserProfileController,
 } from "../controllers/user.controllers";
 import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
 import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
@@ -16,6 +17,11 @@ userRoutes.post(
   "",
   bodyValidateMiddleware(userRequestSchema),
   createUserController
+);
+userRoutes.get(
+  "/profile",
+  verifyTokenMiddleware,
+  retrieveUserProfileController
 );
 userRoutes.get(
   "/:userId",

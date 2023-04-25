@@ -12,17 +12,7 @@ export interface iAdvertisedRequest {
   year: number;
   mileage: number;
   price: number;
-  description: string;
-  cover_image: string;
-  location: string;
-  is_avaliable: boolean;
-}
-
-export interface iAdvertisedRequestID {
-  id: string;
-  title: string;
-  mileage: number;
-  price: number;
+  fipe_price: number;
   description: string;
   cover_image: string;
   location: string;

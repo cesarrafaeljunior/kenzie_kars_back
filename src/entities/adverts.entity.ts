@@ -30,6 +30,9 @@ export class Advertised_car {
   @Column({ type: "decimal", precision: 10, scale: 2 })
   price: number;
 
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  fipe_price: number;
+
   @Column()
   description: string;
 

@@ -35,13 +35,21 @@ export const createAdvertisedService = async (
   const colorObj = await findOneByNameOrCreate(Color, { color });
   const yearObj = await findOneByNameOrCreate(Year, { year });
 
-  const { title, mileage, price, description, cover_image, location } =
-    advertisedData;
+  const {
+    title,
+    mileage,
+    price,
+    fipe_price,
+    description,
+    cover_image,
+    location,
+  } = advertisedData;
 
   const advertised: Advertised_car = advertisedRespository.create({
     title,
     mileage,
     price,
+    fipe_price,
     description,
     cover_image,
     location,

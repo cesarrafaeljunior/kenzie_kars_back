@@ -14,12 +14,12 @@
   "meta": {
     "_id": "wrkm_1f838ea6138a463f9eda01d3c78ea142",
     "created": 1682435963844,
-    "modified": 1682437589861,
+    "modified": 1682464580377,
     "parentId": "wrk_ab779daf5b36467fa9e3ccb98a797fd4",
     "type": "WorkspaceMeta",
     "activeActivity": null,
     "activeEnvironmentId": "env_df39925f85b54383b4730e96365609e4",
-    "activeRequestId": "req_f411f4a306834440853c020f37a51418"
+    "activeRequestId": "req_51e763a16f284dc3b1be00e6a4565a3b"
   },
   "requests": [
     {
@@ -75,6 +75,272 @@
     },
     {
       "type": "group",
+      "id": "fld_01aec0e437fc47899edfe452d968e200",
+      "group": {
+        "_id": "fld_01aec0e437fc47899edfe452d968e200",
+        "type": "RequestGroup",
+        "parentId": "wrk_ab779daf5b36467fa9e3ccb98a797fd4",
+        "modified": 1682461085851,
+        "created": 1682461085851,
+        "name": "/advertises",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1682435976305
+      },
+      "children": [
+        {
+          "type": "request",
+          "id": "req_1e468fe40f7e412a8ae43814e7740a86",
+          "meta": {
+            "_id": "reqm_7976c6e1627d4a2d9c90b834ff49797c",
+            "type": "RequestMeta",
+            "parentId": "req_1e468fe40f7e412a8ae43814e7740a86",
+            "modified": 1682464576839,
+            "created": 1682461160088,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1682464576834,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_1e468fe40f7e412a8ae43814e7740a86",
+            "type": "Request",
+            "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+            "modified": 1682461210500,
+            "created": 1682461085876,
+            "url": "{{ _.baseURL }}/advertised",
+            "name": "retrieve",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1682423150510.25,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        },
+        {
+          "type": "request",
+          "id": "req_51e763a16f284dc3b1be00e6a4565a3b",
+          "meta": {
+            "_id": "reqm_7bb1f0a3f1474b0ca6bfe205d6338607",
+            "type": "RequestMeta",
+            "parentId": "req_51e763a16f284dc3b1be00e6a4565a3b",
+            "modified": 1682464580386,
+            "created": 1682461236938,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1682464580377,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_51e763a16f284dc3b1be00e6a4565a3b",
+            "type": "Request",
+            "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+            "modified": 1682461241107,
+            "created": 1682461085892,
+            "url": "{{ _.baseURL }}/advertised/id",
+            "name": "delete",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {
+              "type": "bearer",
+              "token": "{{ _.token }}"
+            },
+            "metaSortKey": -1682400699519.1875,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        },
+        {
+          "type": "request",
+          "id": "req_8596dba06ba042279dd9ee026d388bb0",
+          "meta": {
+            "_id": "reqm_47b0edba3a404796902f4464161e8817",
+            "type": "RequestMeta",
+            "parentId": "req_8596dba06ba042279dd9ee026d388bb0",
+            "modified": 1682464575698,
+            "created": 1682461106618,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1682464575690,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_8596dba06ba042279dd9ee026d388bb0",
+            "type": "Request",
+            "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+            "modified": 1682461155041,
+            "created": 1682461085856,
+            "url": "{{ _.baseURL }}/advertised",
+            "name": "create",
+            "description": "",
+            "method": "POST",
+            "body": {
+              "mimeType": "application/json",
+              "text": "{\n\t\"title\": \"Titulo\",\n\t\"brand\": \"Marca\",\n\t\"model\": \"Modelo\",\n\t\"fuel\": \"combustível\",\n\t\"color\": \"azul\",\n\t\"year\": 2022,\n\t\"mileage\": 100,\n\t\"price\": 2,\n\t\"fipe_price\": 2,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://s4.static.brasilescola.uol.com.br/img/2019/09/panda.jpg\",\n\t\"location\": \"12345678\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "authentication": {
+              "type": "bearer",
+              "token": "{{ _.token }}"
+            },
+            "metaSortKey": -1682435979648,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        },
+        {
+          "type": "request",
+          "id": "req_f9fd96f56c6243a6b77764d9a06add67",
+          "meta": {
+            "_id": "reqm_284c30dcf8364d91b051f9a5a9d18604",
+            "type": "RequestMeta",
+            "parentId": "req_f9fd96f56c6243a6b77764d9a06add67",
+            "modified": 1682464578221,
+            "created": 1682461185681,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1682464578217,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_f9fd96f56c6243a6b77764d9a06add67",
+            "type": "Request",
+            "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+            "modified": 1682461220128,
+            "created": 1682461085869,
+            "url": "{{ _.baseURL }}/advertised/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
+            "name": "retrieve by user",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1682410321372.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        },
+        {
+          "type": "request",
+          "id": "req_fb6c4c06b833454789bdcc1ce45c19b0",
+          "meta": {
+            "_id": "reqm_e609c76c0e8c41608d3d608f81327e9c",
+            "type": "RequestMeta",
+            "parentId": "req_fb6c4c06b833454789bdcc1ce45c19b0",
+            "modified": 1682464579555,
+            "created": 1682461222257,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1682464579552,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_fb6c4c06b833454789bdcc1ce45c19b0",
+            "type": "Request",
+            "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+            "modified": 1682461229678,
+            "created": 1682461085882,
+            "url": "{{ _.baseURL }}/advertised/id",
+            "name": "edit",
+            "description": "",
+            "method": "PATCH",
+            "body": {
+              "mimeType": "application/json",
+              "text": "{\t\n\t\"title\": \"Titulo\",\n\t\"brand\": \"Marca\",\n\t\"model\": \"Modelo\",\n\t\"fuel\": \"combustível\",\n\t\"color\": \"azul\",\n\t\"year\": 2022,\n\t\"mileage\": 100,\n\t\"price\": 2,\n\t\"fipe_price\": 2,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://s4.static.brasilescola.uol.com.br/img/2019/09/panda.jpg\",\n\t\"location\": \"12345678\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "authentication": {
+              "type": "bearer",
+              "token": "{{ _.token }}"
+            },
+            "metaSortKey": -1682403906803.625,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        }
+      ],
+      "meta": {
+        "_id": "fldm_49122f6b96b646cfae9a471bcc7058de",
+        "type": "RequestGroupMeta",
+        "parentId": "fld_01aec0e437fc47899edfe452d968e200",
+        "modified": 1682461087581,
+        "created": 1682461087581,
+        "collapsed": false
+      }
+    },
+    {
+      "type": "group",
       "id": "fld_07eed81b00404d8d992acc44edb96b92",
       "group": {
         "_id": "fld_07eed81b00404d8d992acc44edb96b92",
@@ -96,7 +362,7 @@
             "_id": "reqm_be540a589c2f40f38ce90042a8d730ea",
             "type": "RequestMeta",
             "parentId": "req_02d8c94a790f4ff5910132b2e495d656",
-            "modified": 1682437582626,
+            "modified": 1682461073996,
             "created": 1682436411057,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -104,7 +370,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682437582622,
+            "lastActive": 1682461073993,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -150,7 +416,7 @@
             "_id": "reqm_10ac709b52c64e9d932e66072a7cc9e3",
             "type": "RequestMeta",
             "parentId": "req_29b7fa0a3a1c41e7bddd135a4ecc5d32",
-            "modified": 1682437585768,
+            "modified": 1682461075373,
             "created": 1682436423283,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -161,7 +427,7 @@
               "text": ""
             },
             "pinned": false,
-            "lastActive": 1682437585764,
+            "lastActive": 1682461075368,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -199,7 +465,7 @@
             "_id": "reqm_cc2f8e188d2f41c9902abc7674fb34c7",
             "type": "RequestMeta",
             "parentId": "req_9275a3cf048640009e1e0ad8cb0a3410",
-            "modified": 1682437584997,
+            "modified": 1682462491296,
             "created": 1682436123027,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -207,7 +473,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682437584995,
+            "lastActive": 1682462491286,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -245,7 +511,7 @@
             "_id": "reqm_0e0390ef01184c93bc182aa9c7ef5764",
             "type": "RequestMeta",
             "parentId": "req_b4c03acd3e7d4f119a24547769f4b609",
-            "modified": 1682437583790,
+            "modified": 1682461072340,
             "created": 1682436093713,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -256,7 +522,7 @@
               "text": ""
             },
             "pinned": false,
-            "lastActive": 1682437583788,
+            "lastActive": 1682461057154,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -264,7 +530,7 @@
             "_id": "req_b4c03acd3e7d4f119a24547769f4b609",
             "type": "Request",
             "parentId": "fld_07eed81b00404d8d992acc44edb96b92",
-            "modified": 1682436967482,
+            "modified": 1682461069323,
             "created": 1682436093678,
             "url": "{{ _.baseURL }}/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
             "name": "retrieve",
@@ -275,7 +541,8 @@
             "headers": [],
             "authentication": {
               "type": "bearer",
-              "token": "{{ _.token }}"
+              "token": "{{ _.token }}",
+              "disabled": false
             },
             "metaSortKey": -1682410321372.5,
             "isPrivate": false,

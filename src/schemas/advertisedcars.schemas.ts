@@ -20,7 +20,15 @@ export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
     price: yup.number().positive().required(),
     fipe_price: yup.number().positive().required(),
     description: yup.string().required(),
-    cover_image: yup.string().max(300).required(),
+    cover_image: yup
+      .string()
+      .url()
+      .matches(
+        /\.(jpeg|jpg|gif|png)$/i,
+        "a URl da imagem deve terminar em jpeg, jpg, gif ou png"
+      )
+      .max(300)
+      .required(),
     location: yup.string().length(8).required(),
     is_avaliable: yup.boolean().required().default(true),
     galery: yup.array().of(galeryRequestSchema).required(),

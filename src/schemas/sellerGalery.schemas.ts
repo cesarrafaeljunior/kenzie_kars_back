@@ -8,7 +8,15 @@ import {
 export const galeryRequestSchema: ObjectSchema<iSellerGaleryRequest> = yup
   .object()
   .shape({
-    image: yup.string().max(300).required(),
+    image: yup
+      .string()
+      .url()
+      .matches(
+        /\.(jpeg|jpg|gif|png)$/i,
+        "a URl da imagem deve terminar em jpeg, jpg, gif ou png"
+      )
+      .max(300)
+      .required(),
   });
 
 export const galeryResponseSchema: ObjectSchema<iSellerGalery> = yup

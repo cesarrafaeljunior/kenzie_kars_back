@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "tsx ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

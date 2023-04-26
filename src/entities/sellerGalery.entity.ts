@@ -6,7 +6,7 @@ export class SellerGalery {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 300 })
+  @Column({ type: "varchar", length: 300 })
   image: string;
 
   @ManyToOne(() => Advertised_car, (advert) => advert.galery, {

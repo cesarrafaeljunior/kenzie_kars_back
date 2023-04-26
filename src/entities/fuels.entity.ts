@@ -9,6 +9,6 @@ export class Fuel {
   @OneToMany(() => Advertised_car, (advert) => advert.fuel)
   adverts: Advertised_car[];
 
-  @Column({ length: 20 })
+  @Column({ type: "varchar", length: 20 })
   fuel: string;
 }

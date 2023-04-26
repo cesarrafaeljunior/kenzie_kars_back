@@ -9,6 +9,6 @@ export class Color {
   @OneToMany(() => Advertised_car, (advert) => advert.color)
   adverts: Advertised_car[];
 
-  @Column({ length: 20 })
+  @Column({ type: "varchar", length: 20 })
   color: string;
 }

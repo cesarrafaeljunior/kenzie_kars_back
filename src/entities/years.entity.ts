@@ -9,6 +9,6 @@ export class Year {
   @OneToMany(() => Advertised_car, (advert) => advert.year)
   adverts: Advertised_car[];
 
-  @Column()
-  year: Number;
+  @Column({ type: "integer" })
+  year: number;
 }

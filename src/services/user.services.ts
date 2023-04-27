@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Address } from "../entities/adresses.entity";
@@ -13,6 +14,8 @@ import {
   userResponseSchema,
   userResponseSchemaNotAddress,
 } from "../schemas/user.schemas";
+import { resetPasswordTemplate, sendEmail } from "../utils/sendEmail.utils";
+import { hashSync } from "bcryptjs";
 
 export const createUserService = async (body: iUserRequest): Promise<any> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
@@ -155,4 +158,52 @@ export const deleteUserService = async (user: User): Promise<Object> => {
   await AppDataSource.getRepository(User).softDelete({ id: user.id });
 
   return {};
+};
+
+export const sendResetEmailPasswordService = async (
+  email: string,
+  protocol: string,
+  host: string
+) => {
+  const userRepo: Repository<User> = AppDataSource.getRepository(User);
+
+  const user = await userRepo.findOneBy({ email: email });
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  const resetToken = randomUUID();
+
+  user.reset_token = resetToken;
+
+  await userRepo.save(user);
+
+  const templateEmail = resetPasswordTemplate(
+    email,
+    user.name,
+    protocol,
+    host,
+    resetToken
+  );
+
+  await sendEmail(templateEmail);
+};
+
+export const resetPasswordService = async (
+  password: string,
+  resetToken: string
+) => {
+  const userRepo: Repository<User> = AppDataSource.getRepository(User);
+
+  const user = await userRepo.findOneBy({ reset_token: resetToken });
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  user.password = hashSync(password, 10);
+  user.reset_token = null!;
+
+  await userRepo.save(user);
 };

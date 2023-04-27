@@ -1,5 +1,6 @@
 import { InferType } from "yup";
-import { advertisedResponseSchema } from "../schemas/advertisedcars.shemas";
+import { advertisedResponseSchema } from "../schemas/advertisedcars.schemas";
+import { iSellerGaleryRequest } from "./sellerGalery.interface";
 
 export type iAdvertised = InferType<typeof advertisedResponseSchema>;
 
@@ -17,6 +18,11 @@ export interface iAdvertisedRequest {
   cover_image: string;
   location: string;
   is_avaliable: boolean;
+  galery: iSellerGaleryRequest[];
+}
+
+export interface iAdvertQuery {
+  [key: string]: string;
 }
 
 export type iAdvertisedUpdate = Partial<iAdvertisedRequest>;

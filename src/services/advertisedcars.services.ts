@@ -1,6 +1,7 @@
 import { AppDataSource } from "../data-source";
 import { AppError } from "../errors";
 import {
+  iAdvertQuery,
   iAdvertised,
   iAdvertisedRequest,
   iAdvertisedUpdate,
@@ -12,13 +13,14 @@ import {
   advertiseListByUserResponseSchema,
   advertisedListResponseSchema,
   advertisedResponseSchema,
-} from "../schemas/advertisedcars.shemas";
+} from "../schemas/advertisedcars.schemas";
 import { Brand } from "../entities/brands.entity";
 import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
 import { Model } from "../entities/models.entity";
 import { Fuel } from "../entities/fuels.entity";
 import { Color } from "../entities/colors.entity";
 import { Year } from "../entities/years.entity";
+import { SellerGalery } from "../entities/sellerGalery.entity";
 
 export const createAdvertisedService = async (
   user: User,
@@ -62,8 +64,14 @@ export const createAdvertisedService = async (
   });
   await advertisedRespository.save(advertised);
 
+  const galeryRepo = AppDataSource.getRepository(SellerGalery);
+  const newImages = advertisedData.galery.map(({ image }) =>
+    galeryRepo.create({ image, advert: advertised })
+  );
+  await galeryRepo.save(newImages);
+
   const advertisedValidated = advertisedResponseSchema.validateSync(
-    { ...advertised, galery: [] },
+    { ...advertised, galery: newImages },
     { stripUnknown: true, abortEarly: false }
   );
 
@@ -110,7 +118,7 @@ export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
   return advertisedValidated;
 };
 
-export const retrieveAllAdvertisedService = async () => {
+export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
@@ -123,6 +131,15 @@ export const retrieveAllAdvertisedService = async () => {
       color: true,
       year: true,
       galery: true,
+    },
+    where: {
+      brand: { brand: query.brand },
+      model: { model: query.model },
+      color: { color: query.color },
+      year: { year: Number(query.year) },
+      fuel: { fuel: query.fuel },
+      // { preco: MoreThan(1000) },
+      // { preco: LessThan(500) },
     },
   });
 

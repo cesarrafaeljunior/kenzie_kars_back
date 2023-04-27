@@ -14,12 +14,12 @@
   "meta": {
     "_id": "wrkm_1f838ea6138a463f9eda01d3c78ea142",
     "created": 1682435963844,
-    "modified": 1682464580377,
+    "modified": 1682609394288,
     "parentId": "wrk_ab779daf5b36467fa9e3ccb98a797fd4",
     "type": "WorkspaceMeta",
     "activeActivity": null,
     "activeEnvironmentId": "env_df39925f85b54383b4730e96365609e4",
-    "activeRequestId": "req_51e763a16f284dc3b1be00e6a4565a3b"
+    "activeRequestId": "req_fb6c4c06b833454789bdcc1ce45c19b0"
   },
   "requests": [
     {
@@ -29,7 +29,7 @@
         "_id": "reqm_2725a932a0034409a7ec7ec92f6336c9",
         "type": "RequestMeta",
         "parentId": "req_7708d65731134fb99a7ca9391c46d12f",
-        "modified": 1682437588836,
+        "modified": 1682608872232,
         "created": 1682436335457,
         "previewMode": "friendly",
         "responseFilter": "",
@@ -37,7 +37,7 @@
         "activeResponseId": null,
         "savedRequestBody": {},
         "pinned": false,
-        "lastActive": 1682437588829,
+        "lastActive": 1682608872230,
         "downloadPath": null,
         "expandedAccordionKeys": {}
       },
@@ -45,7 +45,7 @@
         "_id": "req_7708d65731134fb99a7ca9391c46d12f",
         "type": "Request",
         "parentId": "wrk_ab779daf5b36467fa9e3ccb98a797fd4",
-        "modified": 1682436381760,
+        "modified": 1682608225260,
         "created": 1682436335429,
         "url": "{{ _.baseURL }}/login",
         "name": "login",
@@ -53,7 +53,7 @@
         "method": "POST",
         "body": {
           "mimeType": "application/json",
-          "text": "{\n\t\"email\": \"thom@mail.com\",\n\t\"password\": \"Teste1234%\"\n}"
+          "text": "{\n\t\"email\": \"panda@email.com\",\n\t\"password\": \"senha123\"\n}"
         },
         "parameters": [],
         "headers": [
@@ -96,7 +96,7 @@
             "_id": "reqm_7976c6e1627d4a2d9c90b834ff49797c",
             "type": "RequestMeta",
             "parentId": "req_1e468fe40f7e412a8ae43814e7740a86",
-            "modified": 1682464576839,
+            "modified": 1682608760732,
             "created": 1682461160088,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -104,7 +104,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682464576834,
+            "lastActive": 1682608759015,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -139,7 +139,7 @@
             "_id": "reqm_7bb1f0a3f1474b0ca6bfe205d6338607",
             "type": "RequestMeta",
             "parentId": "req_51e763a16f284dc3b1be00e6a4565a3b",
-            "modified": 1682464580386,
+            "modified": 1682608528049,
             "created": 1682461236938,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -147,7 +147,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682464580377,
+            "lastActive": 1682608528047,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -155,9 +155,9 @@
             "_id": "req_51e763a16f284dc3b1be00e6a4565a3b",
             "type": "Request",
             "parentId": "fld_01aec0e437fc47899edfe452d968e200",
-            "modified": 1682461241107,
+            "modified": 1682608529384,
             "created": 1682461085892,
-            "url": "{{ _.baseURL }}/advertised/id",
+            "url": "{{ _.baseURL }}/advertised/{{ _.idAdv }}",
             "name": "delete",
             "description": "",
             "method": "DELETE",
@@ -185,7 +185,7 @@
             "_id": "reqm_47b0edba3a404796902f4464161e8817",
             "type": "RequestMeta",
             "parentId": "req_8596dba06ba042279dd9ee026d388bb0",
-            "modified": 1682464575698,
+            "modified": 1682608875959,
             "created": 1682461106618,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -193,7 +193,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682464575690,
+            "lastActive": 1682608875957,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -201,7 +201,7 @@
             "_id": "req_8596dba06ba042279dd9ee026d388bb0",
             "type": "Request",
             "parentId": "fld_01aec0e437fc47899edfe452d968e200",
-            "modified": 1682461155041,
+            "modified": 1682608745082,
             "created": 1682461085856,
             "url": "{{ _.baseURL }}/advertised",
             "name": "create",
@@ -209,7 +209,7 @@
             "method": "POST",
             "body": {
               "mimeType": "application/json",
-              "text": "{\n\t\"title\": \"Titulo\",\n\t\"brand\": \"Marca\",\n\t\"model\": \"Modelo\",\n\t\"fuel\": \"combustível\",\n\t\"color\": \"azul\",\n\t\"year\": 2022,\n\t\"mileage\": 100,\n\t\"price\": 2,\n\t\"fipe_price\": 2,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://s4.static.brasilescola.uol.com.br/img/2019/09/panda.jpg\",\n\t\"location\": \"12345678\"\n}"
+              "text": "{\n\t\"title\": \"C4 CACTUS Rip Curl 1.6 16V Flex Aut.\",\n\t\"brand\": \"Citroën\",\n\t\"model\": \"C4 CACTUS Rip Curl 1.6 16V Flex Aut.\",\n\t\"fuel\": \"1\",\n\t\"color\": \"branco\",\n\t\"year\": 2022,\n\t\"mileage\": 1000,\n\t\"price\": 10500,\n\t\"fipe_price\": 112077,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://www.agoramotor.com.br/wp-content/uploads/2021/07/Citroen-C4-Cactus-2022-frente-1024x576.jpg\",\n\t\"location\": \"68893000\",\n\t\"galery\": [\n\t\t{\n\t\t\"image\": \"https://img.olx.com.br/images/67/670349639821125.jpg\"\n\t\t},\n\t\t{\t\n\t\t\t\"image\": \"https://1.bp.blogspot.com/-CDKgvAJ1-lU/YBmi_UFF-1I/AAAAAAAC308/JRHj0-vtwVM5m5AoN9D0ZMdAWws6I8tbwCLcBGAsYHQ/s1920/Citro%25C3%25ABn%2BC4%2BCactus%2B69.jpg\"\t\t\t}\n\t]\n}"
             },
             "parameters": [],
             "headers": [
@@ -239,7 +239,7 @@
             "_id": "reqm_284c30dcf8364d91b051f9a5a9d18604",
             "type": "RequestMeta",
             "parentId": "req_f9fd96f56c6243a6b77764d9a06add67",
-            "modified": 1682464578221,
+            "modified": 1682608763810,
             "created": 1682461185681,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -247,7 +247,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682464578217,
+            "lastActive": 1682608762152,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -255,9 +255,9 @@
             "_id": "req_f9fd96f56c6243a6b77764d9a06add67",
             "type": "Request",
             "parentId": "fld_01aec0e437fc47899edfe452d968e200",
-            "modified": 1682461220128,
+            "modified": 1682608506429,
             "created": 1682461085869,
-            "url": "{{ _.baseURL }}/advertised/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
+            "url": "{{ _.baseURL }}/advertised/users/{{ _.idUser }}",
             "name": "retrieve by user",
             "description": "",
             "method": "GET",
@@ -282,7 +282,7 @@
             "_id": "reqm_e609c76c0e8c41608d3d608f81327e9c",
             "type": "RequestMeta",
             "parentId": "req_fb6c4c06b833454789bdcc1ce45c19b0",
-            "modified": 1682464579555,
+            "modified": 1682609405314,
             "created": 1682461222257,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -290,7 +290,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682464579552,
+            "lastActive": 1682609394288,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -298,15 +298,15 @@
             "_id": "req_fb6c4c06b833454789bdcc1ce45c19b0",
             "type": "Request",
             "parentId": "fld_01aec0e437fc47899edfe452d968e200",
-            "modified": 1682461229678,
+            "modified": 1682609401903,
             "created": 1682461085882,
-            "url": "{{ _.baseURL }}/advertised/id",
+            "url": "{{ _.baseURL }}/advertised/{{ _.idAdv }}",
             "name": "edit",
             "description": "",
             "method": "PATCH",
             "body": {
               "mimeType": "application/json",
-              "text": "{\t\n\t\"title\": \"Titulo\",\n\t\"brand\": \"Marca\",\n\t\"model\": \"Modelo\",\n\t\"fuel\": \"combustível\",\n\t\"color\": \"azul\",\n\t\"year\": 2022,\n\t\"mileage\": 100,\n\t\"price\": 2,\n\t\"fipe_price\": 2,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://s4.static.brasilescola.uol.com.br/img/2019/09/panda.jpg\",\n\t\"location\": \"12345678\"\n}"
+              "text": "{\n\t\"title\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"brand\": \"Citroën\",\n\t\"model\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"color\": \"preto\",\n\t\"year\": 2019,\n\t\"mileage\": 1000,\n\t\"price\": 10500,\n\t\"fipe_price\": 59564,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://www.agoramotor.com.br/wp-content/uploads/2021/07/Citroen-C4-Cactus-2022-frente-1024x576.jpg\",\n\t\"location\": \"68893000\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -362,7 +362,7 @@
             "_id": "reqm_be540a589c2f40f38ce90042a8d730ea",
             "type": "RequestMeta",
             "parentId": "req_02d8c94a790f4ff5910132b2e495d656",
-            "modified": 1682461073996,
+            "modified": 1682608874286,
             "created": 1682436411057,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -370,7 +370,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682461073993,
+            "lastActive": 1682608874285,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -378,15 +378,15 @@
             "_id": "req_02d8c94a790f4ff5910132b2e495d656",
             "type": "Request",
             "parentId": "fld_07eed81b00404d8d992acc44edb96b92",
-            "modified": 1682437008876,
+            "modified": 1682608865577,
             "created": 1682436411032,
-            "url": "{{ _.baseURL }}/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
+            "url": "{{ _.baseURL }}/users/{{ _.idUser }}",
             "name": "edit",
             "description": "",
             "method": "PATCH",
             "body": {
               "mimeType": "application/json",
-              "text": "{\n\t\"name\": \"Thomas\",\n\t\"email\": \"thom@mail.com\",\n\t\"cpf\": \"12345678910\",\n\t\"phone_number\": \"54981215552\",\n\t\"birthdate\": \"1999/11/27\",\n\t\"description\": \"Bio....\",\n\t\"password\": \"Teste1234%\",\n\t\"confirm_password\": \"Teste1234%\",\n\t\"is_seller\": true\n}"
+              "text": "{\n\t\"name\": \"Panda da Silva Sauro\",\n\t\"birthdate\": \"1999/10/31\",\n\t\"is_seller\": true\n}"
             },
             "parameters": [],
             "headers": [
@@ -416,7 +416,7 @@
             "_id": "reqm_10ac709b52c64e9d932e66072a7cc9e3",
             "type": "RequestMeta",
             "parentId": "req_29b7fa0a3a1c41e7bddd135a4ecc5d32",
-            "modified": 1682461075373,
+            "modified": 1682608875112,
             "created": 1682436423283,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -427,7 +427,7 @@
               "text": ""
             },
             "pinned": false,
-            "lastActive": 1682461075368,
+            "lastActive": 1682608875110,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -435,9 +435,9 @@
             "_id": "req_29b7fa0a3a1c41e7bddd135a4ecc5d32",
             "type": "Request",
             "parentId": "fld_07eed81b00404d8d992acc44edb96b92",
-            "modified": 1682437021212,
+            "modified": 1682608473774,
             "created": 1682436423250,
-            "url": "{{ _.baseURL }}/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
+            "url": "{{ _.baseURL }}/users/{{ _.idUser }}",
             "name": "delete",
             "description": "",
             "method": "DELETE",
@@ -465,7 +465,7 @@
             "_id": "reqm_cc2f8e188d2f41c9902abc7674fb34c7",
             "type": "RequestMeta",
             "parentId": "req_9275a3cf048640009e1e0ad8cb0a3410",
-            "modified": 1682462491296,
+            "modified": 1682608870401,
             "created": 1682436123027,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -473,7 +473,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682462491286,
+            "lastActive": 1682608870400,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -511,7 +511,7 @@
             "_id": "reqm_0e0390ef01184c93bc182aa9c7ef5764",
             "type": "RequestMeta",
             "parentId": "req_b4c03acd3e7d4f119a24547769f4b609",
-            "modified": 1682461072340,
+            "modified": 1682608873656,
             "created": 1682436093713,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -522,7 +522,7 @@
               "text": ""
             },
             "pinned": false,
-            "lastActive": 1682461057154,
+            "lastActive": 1682608873655,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -530,9 +530,9 @@
             "_id": "req_b4c03acd3e7d4f119a24547769f4b609",
             "type": "Request",
             "parentId": "fld_07eed81b00404d8d992acc44edb96b92",
-            "modified": 1682461069323,
+            "modified": 1682608451684,
             "created": 1682436093678,
-            "url": "{{ _.baseURL }}/users/902c37a8-4675-49ce-8e58-6dec9a52caaf",
+            "url": "{{ _.baseURL }}/users/{{ _.idUser }}",
             "name": "retrieve",
             "description": "",
             "method": "GET",
@@ -561,7 +561,7 @@
             "_id": "reqm_e0319ce16605404d908ba94e116a161e",
             "type": "RequestMeta",
             "parentId": "req_f411f4a306834440853c020f37a51418",
-            "modified": 1682437589866,
+            "modified": 1682608869628,
             "created": 1682435979986,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -569,7 +569,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682437589861,
+            "lastActive": 1682608869627,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -577,7 +577,7 @@
             "_id": "req_f411f4a306834440853c020f37a51418",
             "type": "Request",
             "parentId": "fld_07eed81b00404d8d992acc44edb96b92",
-            "modified": 1682436892770,
+            "modified": 1682608287516,
             "created": 1682435979647,
             "url": "{{ _.baseURL }}/users",
             "name": "create",
@@ -585,7 +585,7 @@
             "method": "POST",
             "body": {
               "mimeType": "application/json",
-              "text": "{\n\t\"name\": \"Thomas\",\n\t\"email\": \"thom@mail.com\",\n\t\"cpf\": \"12345678910\",\n\t\"phone_number\": \"54981215552\",\n\t\"birthdate\": \"1999/11/27\",\n\t\"description\": \"Bio....\",\n\t\"password\": \"Teste1234%\",\n\t\"confirm_password\": \"Teste1234%\",\n\t\"is_seller\": true,\n\t\"address\": {\n\t\t\"cep\": \"97010830\",\n\t\t\"state\": \"RS\",\n\t\t\"city\": \"Santa Maria\",\n\t\t\"street\": \"Rua Vale Machado\",\n\t\t\"number\": 1599,\n\t\t\"complement\": \"Ap 2\"\n\t}\n}"
+              "text": "{\n\t\"name\": \"Panda da Silva\",\n\t\"email\": \"panda@email.com\",\n\t\"cpf\": \"12345678910\",\n\t\"phone_number\": \"11987654321\",\n\t\"birthdate\": \"1999/10/31\",\n\t\"description\": \"Bio....\",\n\t\"password\": \"senha123\",\n\t\"confirm_password\": \"senha123\",\n\t\"is_seller\": true,\n\t\"address\": {\n\t\t\"cep\": \"68893000\",\n\t\t\"state\": \"PA\",\n\t\t\"city\": \"Maracanã\",\n\t\t\"street\": \"Rua da Praia\",\n\t\t\"number\": 1599,\n\t\t\"complement\": \"Ap 2\"\n\t}\n}"
             },
             "parameters": [],
             "headers": [
@@ -655,17 +655,21 @@
       "_id": "env_df39925f85b54383b4730e96365609e4",
       "type": "Environment",
       "parentId": "env_990765a44dd34729b3caea14c3630b0a928d02c3",
-      "modified": 1682436931219,
+      "modified": 1682608414504,
       "created": 1682435992802,
       "name": "Develop",
       "data": {
         "baseURL": "http://localhost:3001",
-        "token": "{% response 'body', 'req_7708d65731134fb99a7ca9391c46d12f', 'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+        "token": "{% response 'body', 'req_7708d65731134fb99a7ca9391c46d12f', 'b64::JC50b2tlbg==::46b', 'never', 60 %}",
+        "idUser": "{% response 'body', 'req_f411f4a306834440853c020f37a51418', 'b64::JC5pZA==::46b', 'never', 60 %}",
+        "idAdv": "{% response 'body', 'req_8596dba06ba042279dd9ee026d388bb0', 'b64::JC5pZA==::46b', 'never', 60 %}"
       },
       "dataPropertyOrder": {
         "&": [
           "baseURL",
-          "token"
+          "token",
+          "idUser",
+          "idAdv"
         ]
       },
       "color": "#a100c2",

@@ -1,6 +1,8 @@
-import { iAdvertised } from "./advertised.interfaces";
+export interface iSellerGaleryRequest {
+  image: string;
+}
 
 export interface iSellerGalery {
-  advert: iAdvertised;
+  id: string;
   image: string;
 }

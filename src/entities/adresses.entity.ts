@@ -12,22 +12,22 @@ export class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 8 })
+  @Column({ type: "varchar", length: 8 })
   cep: string;
 
-  @Column({ length: 2 })
+  @Column({ type: "varchar", length: 2 })
   state: string;
 
-  @Column({ length: 50 })
+  @Column({ type: "varchar", length: 50 })
   city: string;
 
-  @Column({ length: 80 })
+  @Column({ type: "varchar", length: 80 })
   street: string;
 
-  @Column({ length: 10, nullable: true })
+  @Column({ type: "varchar", length: 10, nullable: true })
   number?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   complement?: string;
 
   @OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })

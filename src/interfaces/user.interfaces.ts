@@ -30,3 +30,10 @@ export interface iUser {
 }
 
 export type iUserNotAddress = Omit<iUser, "address">;
+
+export interface iSendEmailRequest {
+  to: string;
+  subject: string;
+  text: string;
+  html?: string;
+}

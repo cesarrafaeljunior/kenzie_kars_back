@@ -14,12 +14,12 @@
   "meta": {
     "_id": "wrkm_1f838ea6138a463f9eda01d3c78ea142",
     "created": 1682435963844,
-    "modified": 1682608875957,
+    "modified": 1682609394288,
     "parentId": "wrk_ab779daf5b36467fa9e3ccb98a797fd4",
     "type": "WorkspaceMeta",
     "activeActivity": null,
     "activeEnvironmentId": "env_df39925f85b54383b4730e96365609e4",
-    "activeRequestId": "req_8596dba06ba042279dd9ee026d388bb0"
+    "activeRequestId": "req_fb6c4c06b833454789bdcc1ce45c19b0"
   },
   "requests": [
     {
@@ -282,7 +282,7 @@
             "_id": "reqm_e609c76c0e8c41608d3d608f81327e9c",
             "type": "RequestMeta",
             "parentId": "req_fb6c4c06b833454789bdcc1ce45c19b0",
-            "modified": 1682608842670,
+            "modified": 1682609405314,
             "created": 1682461222257,
             "previewMode": "friendly",
             "responseFilter": "",
@@ -290,7 +290,7 @@
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 1682608805036,
+            "lastActive": 1682609394288,
             "downloadPath": null,
             "expandedAccordionKeys": {}
           },
@@ -298,7 +298,7 @@
             "_id": "req_fb6c4c06b833454789bdcc1ce45c19b0",
             "type": "Request",
             "parentId": "fld_01aec0e437fc47899edfe452d968e200",
-            "modified": 1682608841339,
+            "modified": 1682609401903,
             "created": 1682461085882,
             "url": "{{ _.baseURL }}/advertised/{{ _.idAdv }}",
             "name": "edit",
@@ -306,7 +306,7 @@
             "method": "PATCH",
             "body": {
               "mimeType": "application/json",
-              "text": "{\n\t\"title\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"brand\": \"Citroën\",\n\t\"model\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"color\": \"preto\",\n\t\"year\": 2019,\n\t\"mileage\": 1000,\n\t\"price\": 10500,\n\t\"fipe_price\": 59564,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://www.agoramotor.com.br/wp-content/uploads/2021/07/Citroen-C4-Cactus-2022-frente-1024x576.jpg\",\n\t\"location\": \"68893000\",\n\t\"galery\": []\n}"
+              "text": "{\n\t\"title\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"brand\": \"Citroën\",\n\t\"model\": \"Ka 1.5 FreeStyle 12V Flex 5p Mec.\",\n\t\"color\": \"preto\",\n\t\"year\": 2019,\n\t\"mileage\": 1000,\n\t\"price\": 10500,\n\t\"fipe_price\": 59564,\n\t\"description\": \"Lorem ipsum dolor sit amet\",\n\t\"cover_image\": \"https://www.agoramotor.com.br/wp-content/uploads/2021/07/Citroen-C4-Cactus-2022-frente-1024x576.jpg\",\n\t\"location\": \"68893000\"\n}"
             },
             "parameters": [],
             "headers": [

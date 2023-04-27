@@ -5,6 +5,7 @@ import {
   iAdvertised,
   iAdvertisedRequest,
   iAdvertisedUpdate,
+  iFilterList,
 } from "../interfaces/advertised.interfaces";
 import { Repository } from "typeorm";
 import { User } from "../entities/users.entity";
@@ -122,6 +123,18 @@ export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
+  let filterList: iFilterList = {
+    brand: { brand: query.brand },
+    model: { model: query.model },
+    color: { color: query.color },
+    fuel: { fuel: query.fuel },
+    // { preco: MoreThan(1000) },
+    // { preco: LessThan(500) },
+  };
+  if (query.year) {
+    filterList = { ...filterList, year: { year: Number(query.year) } };
+  }
+
   const advertisedList = await advertisedRespository.find({
     relations: {
       user: true,
@@ -132,15 +145,7 @@ export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
       year: true,
       galery: true,
     },
-    where: {
-      brand: { brand: query.brand },
-      model: { model: query.model },
-      color: { color: query.color },
-      year: { year: Number(query.year) },
-      fuel: { fuel: query.fuel },
-      // { preco: MoreThan(1000) },
-      // { preco: LessThan(500) },
-    },
+    where: filterList,
   });
 
   const advertiseValidated = advertisedListResponseSchema.validateSync(

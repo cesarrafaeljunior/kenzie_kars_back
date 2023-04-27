@@ -3,7 +3,7 @@ import { bodyValidateMiddleware } from "../middlewares/bodyValidate.middleware";
 import {
   advertisedRequestSchema,
   advertisedUpdateSchema,
-} from "../schemas/advertisedcars.shemas";
+} from "../schemas/advertisedcars.schemas";
 import {
   createAdvertisedController,
   deleteAdvertisedontroller,

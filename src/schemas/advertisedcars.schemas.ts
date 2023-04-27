@@ -2,6 +2,10 @@ import * as yup from "yup";
 import { ObjectSchema } from "yup";
 import { iAdvertisedRequest } from "../interfaces/advertised.interfaces";
 import { userResponseSchemaNotAddress } from "./user.schemas";
+import {
+  galeryRequestSchema,
+  galeryResponseSchema,
+} from "./sellerGalery.schemas";
 
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
   .object()
@@ -16,9 +20,18 @@ export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
     price: yup.number().positive().required(),
     fipe_price: yup.number().positive().required(),
     description: yup.string().required(),
-    cover_image: yup.string().max(300).required(),
+    cover_image: yup
+      .string()
+      .url()
+      .matches(
+        /\.(jpeg|jpg|gif|png)$/i,
+        "a URl da imagem deve terminar em jpeg, jpg, gif ou png"
+      )
+      .max(300)
+      .required(),
     location: yup.string().length(8).required(),
     is_avaliable: yup.boolean().required().default(true),
+    galery: yup.array().of(galeryRequestSchema).required(),
   });
 
 export const advertisedUpdateSchema = advertisedRequestSchema
@@ -29,15 +42,8 @@ export const advertisedUpdateSchema = advertisedRequestSchema
   )
   .partial();
 
-const galeryResponseSchema = yup.array().of(
-  yup.object().shape({
-    id: yup.number().required(),
-    image: yup.string().required(),
-  })
-);
-
 export const advertisedResponseSchemaNotUser = yup.object().shape({
-  galery: galeryResponseSchema,
+  galery: yup.array().of(galeryResponseSchema).required(),
   updated_at: yup.date().required(),
   created_at: yup.date().required(),
   is_avaliable: yup.boolean().required(),

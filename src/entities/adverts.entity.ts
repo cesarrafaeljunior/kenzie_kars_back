@@ -21,10 +21,10 @@ export class Advertised_car {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 100 })
+  @Column({ type: "varchar", length: 100 })
   title: string;
 
-  @Column()
+  @Column({ type: "integer" })
   mileage: number;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
@@ -33,16 +33,16 @@ export class Advertised_car {
   @Column({ type: "decimal", precision: 10, scale: 2 })
   fipe_price: number;
 
-  @Column()
+  @Column({ type: "varchar" })
   description: string;
 
-  @Column({ length: 300 })
+  @Column({ type: "varchar", length: 300 })
   cover_image: string;
 
-  @Column({ length: 8 })
+  @Column({ type: "varchar", length: 8 })
   location: string;
 
-  @Column({ default: true })
+  @Column({ type: "boolean", default: true })
   is_avaliable: boolean;
 
   @CreateDateColumn()

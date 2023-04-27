@@ -20,34 +20,34 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 50 })
+  @Column({ type: "varchar", length: 50 })
   name: string;
 
-  @Column({ length: 100, unique: true })
+  @Column({ type: "varchar", length: 100, unique: true })
   email: string;
 
-  @Column({ length: 11, unique: true })
+  @Column({ type: "varchar", length: 11, unique: true })
   cpf: string;
 
-  @Column({ length: 11, unique: true })
+  @Column({ type: "varchar", length: 11, unique: true })
   phone_number: string;
 
   @Column({ type: "date" })
   birthdate: Date;
 
-  @Column()
+  @Column({ type: "varchar" })
   description: string;
 
-  @Column({ length: 120 })
+  @Column({ type: "varchar", length: 120 })
   password: string;
 
   @BeforeUpdate()
   @BeforeInsert()
-  hashPassword() {
+  protected hashPassword() {
     this.password = hashSync(this.password, 10);
   }
 
-  @Column({ default: false })
+  @Column({ type: "boolean", default: false })
   is_seller: boolean;
 
   @CreateDateColumn()

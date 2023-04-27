@@ -9,6 +9,6 @@ export class Model {
   @OneToMany(() => Advertised_car, (advert) => advert.model)
   adverts: Advertised_car[];
 
-  @Column({ length: 50 })
+  @Column({ type: "varchar", length: 50 })
   model: string;
 }

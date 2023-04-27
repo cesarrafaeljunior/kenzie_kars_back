@@ -3,8 +3,10 @@ import {
   createUserController,
   deleteUserController,
   editUserController,
+  resetPasswordController,
   retrieveUserController,
   retrieveUserProfileController,
+  sendResetEmailPasswordController,
 } from "../controllers/user.controllers";
 import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
 import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
@@ -42,3 +44,5 @@ userRoutes.delete(
   isUserExistsMiddleware,
   deleteUserController
 );
+userRoutes.post("/resetPassword", sendResetEmailPasswordController);
+userRoutes.patch("/resetPassword/:token", resetPasswordController);

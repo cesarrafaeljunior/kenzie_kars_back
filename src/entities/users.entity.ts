@@ -47,6 +47,9 @@ export class User {
     this.password = hashSync(this.password, 10);
   }
 
+  @Column({ nullable: true, type: "varchar" })
+  reset_token: string;
+
   @Column({ type: "boolean", default: false })
   is_seller: boolean;
 
@@ -67,4 +70,4 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
-}
+};

@@ -39,6 +39,7 @@ const userRequestSchemaNotAddress: ObjectSchema<Omit<iUserRequest, "address">> =
       .oneOf([yup.ref("password")], "Passwords are not the same. Try again!")
       .required(),
     is_seller: yup.boolean().required(),
+    reset_token: yup.string().nullable(),
   });
 
 export const userRequestSchema: ObjectSchema<iUserRequest> =
@@ -62,6 +63,7 @@ export const userResponseSchema: ObjectSchema<iUser> = yup.object().shape({
   email: yup.string().email().required(),
   name: yup.string().required(),
   id: yup.string().required(),
+  reset_token: yup.string().nullable(),
 });
 
 export const userResponseSchemaNotAddress: ObjectSchema<iUserNotAddress> = yup
@@ -77,4 +79,5 @@ export const userResponseSchemaNotAddress: ObjectSchema<iUserNotAddress> = yup
     email: yup.string().email().required(),
     name: yup.string().required(),
     id: yup.string().required(),
+    reset_token: yup.string().nullable(),
   });

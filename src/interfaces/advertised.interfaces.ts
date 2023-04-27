@@ -21,4 +21,8 @@ export interface iAdvertisedRequest {
   galery: iSellerGaleryRequest[];
 }
 
+export interface iAdvertQuery {
+  [key: string]: string;
+}
+
 export type iAdvertisedUpdate = Partial<iAdvertisedRequest>;

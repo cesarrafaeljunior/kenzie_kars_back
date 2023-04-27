@@ -1,6 +1,7 @@
 import { AppDataSource } from "../data-source";
 import { AppError } from "../errors";
 import {
+  iAdvertQuery,
   iAdvertised,
   iAdvertisedRequest,
   iAdvertisedUpdate,
@@ -117,7 +118,7 @@ export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
   return advertisedValidated;
 };
 
-export const retrieveAllAdvertisedService = async () => {
+export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
@@ -130,6 +131,15 @@ export const retrieveAllAdvertisedService = async () => {
       color: true,
       year: true,
       galery: true,
+    },
+    where: {
+      brand: { brand: query.brand },
+      model: { model: query.model },
+      color: { color: query.color },
+      year: { year: Number(query.year) },
+      fuel: { fuel: query.fuel },
+      // { preco: MoreThan(1000) },
+      // { preco: LessThan(500) },
     },
   });
 

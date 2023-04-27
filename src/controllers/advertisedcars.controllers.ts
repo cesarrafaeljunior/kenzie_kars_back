@@ -7,6 +7,7 @@ import {
   retrieveAdvertisedService,
   retrieveAllAdvertisedService,
 } from "../services/advertisedcars.services";
+import { iAdvertQuery } from "../interfaces/advertised.interfaces";
 
 export const createAdvertisedController = async (
   req: Request,
@@ -40,7 +41,9 @@ export const retrieveAllAdvertisedController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const advertisedData = await retrieveAllAdvertisedService();
+  const advertisedData = await retrieveAllAdvertisedService(
+    req.query as iAdvertQuery
+  );
 
   return res.json(advertisedData);
 };

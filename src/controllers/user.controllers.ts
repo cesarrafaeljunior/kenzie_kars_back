@@ -44,9 +44,15 @@ export const sendResetEmailPasswordController = async (
   const { protocol } = req;
   const host = req.get("host");
 
-  await sendResetEmailPasswordService(email, protocol, host!);
+  const resetToken = await sendResetEmailPasswordService(
+    email,
+    protocol,
+    host!
+  );
 
-  return res.status(200).json({ message: "token send" });
+  return res
+    .status(200)
+    .json({ message: "E-mail enviado com sucesso!", resetToken: resetToken });
 };
 
 export const resetPasswordController = async (req: Request, res: Response) => {
@@ -55,5 +61,5 @@ export const resetPasswordController = async (req: Request, res: Response) => {
 
   await resetPasswordService(password, token);
 
-  return res.json({ message: "Senha alterada com sucesso!" });
+  return res.status(200).json({ message: "Senha alterada com sucesso!" });
 };

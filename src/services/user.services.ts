@@ -188,6 +188,8 @@ export const sendResetEmailPasswordService = async (
   );
 
   await sendEmail(templateEmail);
+
+  return user.reset_token;
 };
 
 export const resetPasswordService = async (
@@ -202,7 +204,7 @@ export const resetPasswordService = async (
     throw new AppError("User not found", 404);
   }
 
-  user.password = hashSync(password, 10);
+  user.password = password;
   user.reset_token = null!;
 
   await userRepo.save(user);

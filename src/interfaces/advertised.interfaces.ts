@@ -5,7 +5,6 @@ import { iSellerGaleryRequest } from "./sellerGalery.interface";
 export type iAdvertised = InferType<typeof advertisedResponseSchema>;
 
 export interface iAdvertisedRequest {
-  title: string;
   brand: string;
   model: string;
   fuel: string;

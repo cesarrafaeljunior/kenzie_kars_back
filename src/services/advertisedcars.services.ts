@@ -7,7 +7,7 @@ import {
   iAdvertisedUpdate,
   iFilterList,
 } from "../interfaces/advertised.interfaces";
-import { Repository } from "typeorm";
+import { Between, LessThan, MoreThan, Repository } from "typeorm";
 import { User } from "../entities/users.entity";
 import { Advertised_car } from "../entities/adverts.entity";
 import {
@@ -120,8 +120,14 @@ export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
     model: { model: query.model },
     color: { color: query.color },
     fuel: { fuel: query.fuel },
-    // { preco: MoreThan(1000) },
-    // { preco: LessThan(500) },
+    price: Between(
+      parseFloat(query.min_price || "0"),
+      parseFloat(query.max_price || "999999999")
+    ),
+    mileage: Between(
+      Number(query.min_mileage || "0"),
+      Number(query.max_mileage || "999999999")
+    ),
   };
   if (query.year) {
     filterList = { ...filterList, year: { year: Number(query.year) } };

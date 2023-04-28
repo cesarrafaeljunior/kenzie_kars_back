@@ -1,6 +1,7 @@
 import { InferType } from "yup";
 import { advertisedResponseSchema } from "../schemas/advertisedcars.schemas";
 import { iSellerGaleryRequest } from "./sellerGalery.interface";
+import { FindOperator } from "typeorm";
 
 export type iAdvertised = InferType<typeof advertisedResponseSchema>;
 
@@ -27,5 +28,9 @@ export interface iAdvertQuery {
 }
 
 export interface iFilterList {
-  [key: string]: { [key: string]: string | number };
+  [key: string]:
+    | {
+        [key: string]: string | number;
+      }
+    | FindOperator<number>;
 }

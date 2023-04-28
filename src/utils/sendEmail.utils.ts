@@ -52,7 +52,7 @@ export const resetPasswordTemplate = (
         instructions: "Clique no botão para resetar a sua senha:",
         button: {
           color: "#DC4D2F",
-          text: "Reset your password",
+          text: "Recuperar senha",
           link: `${protocol}://localhost:${3000}/recoverPassword/${resetToken}`,
         },
       },

@@ -10,7 +10,6 @@ import {
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
   .object()
   .shape({
-    title: yup.string().max(100).required(),
     brand: yup.string().max(50).required(),
     model: yup.string().max(50).required(),
     fuel: yup.string().max(20).required(),
@@ -58,7 +57,6 @@ export const advertisedResponseSchemaNotUser = yup.object().shape({
   fuel: yup.mixed().transform(({ fuel }) => fuel),
   model: yup.mixed().transform(({ model }) => model),
   brand: yup.mixed().transform(({ brand }) => brand),
-  title: yup.string().required(),
   id: yup.string().required(),
 });
 

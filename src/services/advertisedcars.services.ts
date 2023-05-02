@@ -7,7 +7,7 @@ import {
   iAdvertisedUpdate,
   iFilterList,
 } from "../interfaces/advertised.interfaces";
-import { Between, LessThan, MoreThan, Repository } from "typeorm";
+import { Between, Repository } from "typeorm";
 import { User } from "../entities/users.entity";
 import { Advertised_car } from "../entities/adverts.entity";
 import {
@@ -86,6 +86,9 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
         color: true,
         year: true,
         galery: true,
+        comments: {
+          user: true,
+        },
       },
     },
   });

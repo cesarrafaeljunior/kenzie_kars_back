@@ -6,6 +6,7 @@ import {
   galeryRequestSchema,
   galeryResponseSchema,
 } from "./sellerGalery.schemas";
+import { commentResponseSchema } from "./comments.schemas";
 
 export const advertisedRequestSchema: ObjectSchema<iAdvertisedRequest> = yup
   .object()
@@ -73,6 +74,14 @@ export const advertisedListResponseSchema = yup
 export const advertiseListByUserResponseSchema =
   userResponseSchemaNotAddress.concat(
     yup.object().shape({
-      adverts: yup.array().of(advertisedResponseSchemaNotUser),
+      adverts: yup
+        .array()
+        .of(
+          advertisedResponseSchemaNotUser.concat(
+            yup
+              .object()
+              .shape({ comments: yup.array().of(commentResponseSchema) })
+          )
+        ),
     })
   );

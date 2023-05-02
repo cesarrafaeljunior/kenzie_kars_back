@@ -15,7 +15,6 @@ import {
   userResponseSchemaNotAddress,
 } from "../schemas/user.schemas";
 import { resetPasswordTemplate, sendEmail } from "../utils/sendEmail.utils";
-import { hashSync } from "bcryptjs";
 
 export const createUserService = async (body: iUserRequest): Promise<any> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);

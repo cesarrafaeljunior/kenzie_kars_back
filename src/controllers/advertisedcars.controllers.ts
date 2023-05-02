@@ -62,7 +62,7 @@ export const editAdvertisedController = async (
   return res.status(200).json(newaAvertised);
 };
 
-export const deleteAdvertisedontroller = async (
+export const deleteAdvertisedController = async (
   req: Request,
   res: Response
 ) => {

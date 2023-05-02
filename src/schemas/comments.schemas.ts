@@ -25,5 +25,3 @@ export const commentResponseSchema: ObjectSchema<iComment> = yup
     description: yup.string().required(),
     id: yup.string().required(),
   });
-
-export const commentListResponseSchema = yup.array().of(commentResponseSchema);

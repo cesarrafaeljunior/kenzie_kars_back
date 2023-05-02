@@ -188,8 +188,6 @@ export const sendResetEmailPasswordService = async (
   );
 
   await sendEmail(templateEmail);
-
-  return user.reset_token;
 };
 
 export const resetPasswordService = async (
@@ -208,4 +206,16 @@ export const resetPasswordService = async (
   user.reset_token = null!;
 
   await userRepo.save(user);
+};
+
+export const verifyUserToResetPasswordService = async (token: string) => {
+  const userRepo: Repository<User> = AppDataSource.getRepository(User);
+
+  const user = await userRepo.findOneBy({ reset_token: token });
+
+  if (!user) {
+    throw new AppError("token invalid or not exists", 409);
+  }
+
+  return user.reset_token;
 };

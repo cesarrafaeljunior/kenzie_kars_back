@@ -214,7 +214,7 @@ export const verifyUserToResetPasswordService = async (token: string) => {
   const user = await userRepo.findOneBy({ reset_token: token });
 
   if (!user) {
-    throw new AppError("token invalid or not exists", 409);
+    throw new AppError("token not found", 404);
   }
 
   return user.reset_token;

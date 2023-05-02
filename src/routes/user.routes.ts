@@ -7,6 +7,7 @@ import {
   retrieveUserController,
   retrieveUserProfileController,
   sendResetEmailPasswordController,
+  verifyUserToResetPasswordController,
 } from "../controllers/user.controllers";
 import { isUserExistsMiddleware } from "../middlewares/isUserExists.middleware";
 import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
@@ -46,3 +47,4 @@ userRoutes.delete(
 );
 userRoutes.post("/resetPassword", sendResetEmailPasswordController);
 userRoutes.patch("/resetPassword/:token", resetPasswordController);
+userRoutes.get("/resetPassword/:token", verifyUserToResetPasswordController);

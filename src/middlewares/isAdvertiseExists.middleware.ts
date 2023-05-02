@@ -22,7 +22,7 @@ export const isAdvertiseExistsMiddleware = async (
       },
     })
     .catch(() => {
-      throw new AppError("Advertise not found ", 404);
+      throw new AppError("Advertise not found", 404);
     });
 
   req.paramAdvertise = advertise;

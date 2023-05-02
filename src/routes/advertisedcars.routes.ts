@@ -6,7 +6,7 @@ import {
 } from "../schemas/advertisedcars.schemas";
 import {
   createAdvertisedController,
-  deleteAdvertisedontroller,
+  deleteAdvertisedController,
   editAdvertisedController,
   retrieveAdvertisedByUserController,
   retrieveAdvertisedController,
@@ -46,5 +46,5 @@ advertisedRoutes.delete(
   "/:advertId/",
   verifyTokenMiddleware,
   isAdvertiseExistsMiddleware,
-  deleteAdvertisedontroller
+  deleteAdvertisedController
 );

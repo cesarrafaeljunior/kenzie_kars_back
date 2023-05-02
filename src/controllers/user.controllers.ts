@@ -6,6 +6,7 @@ import {
   resetPasswordService,
   retrieveUserService,
   sendResetEmailPasswordService,
+  verifyUserToResetPasswordService,
 } from "../services/user.services";
 
 export const createUserController = async (req: Request, res: Response) => {
@@ -62,4 +63,15 @@ export const resetPasswordController = async (req: Request, res: Response) => {
   await resetPasswordService(password, token);
 
   return res.status(200).json({ message: "Senha alterada com sucesso!" });
+};
+
+export const verifyUserToResetPasswordController = async (
+  req: Request,
+  res: Response
+) => {
+  const { token } = req.params;
+
+  const userToken = await verifyUserToResetPasswordService(token);
+
+  return res.status(200).json({ token: userToken });
 };

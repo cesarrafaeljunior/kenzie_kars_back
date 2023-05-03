@@ -14,6 +14,7 @@ import {
   advertiseListByUserResponseSchema,
   advertisedListResponseSchema,
   advertisedResponseSchema,
+  advertisedResponseWithComments,
 } from "../schemas/advertisedcars.schemas";
 import { Brand } from "../entities/brands.entity";
 import { findOneByNameOrCreate } from "../utils/findOneByNameOrCreate";
@@ -86,9 +87,6 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
         color: true,
         year: true,
         galery: true,
-        comments: {
-          user: true,
-        },
       },
     },
   });
@@ -106,10 +104,30 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
 };
 
 export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
-  const advertisedValidated = advertisedResponseSchema.validateSync(advertise, {
-    stripUnknown: true,
-    abortEarly: false,
-  });
+  advertise = await AppDataSource.getRepository(Advertised_car)
+    .findOneOrFail({
+      where: { id: advertise.id },
+      relations: {
+        user: true,
+        brand: true,
+        model: true,
+        fuel: true,
+        color: true,
+        year: true,
+        galery: true,
+        comments: {
+          user: true,
+        },
+      },
+    })
+    .catch(() => {
+      throw new AppError("Advertise not found", 404);
+    });
+
+  const advertisedValidated = advertisedResponseWithComments.validateSync(
+    advertise,
+    { stripUnknown: true, abortEarly: false }
+  );
 
   return advertisedValidated;
 };

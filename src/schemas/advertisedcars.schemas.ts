@@ -67,6 +67,10 @@ export const advertisedResponseSchema = advertisedResponseSchemaNotUser.concat(
   })
 );
 
+export const advertisedResponseWithComments = advertisedResponseSchema.concat(
+  yup.object().shape({ comments: yup.array().of(commentResponseSchema) })
+);
+
 export const advertisedListResponseSchema = yup
   .array()
   .of(advertisedResponseSchema);
@@ -74,14 +78,6 @@ export const advertisedListResponseSchema = yup
 export const advertiseListByUserResponseSchema =
   userResponseSchemaNotAddress.concat(
     yup.object().shape({
-      adverts: yup
-        .array()
-        .of(
-          advertisedResponseSchemaNotUser.concat(
-            yup
-              .object()
-              .shape({ comments: yup.array().of(commentResponseSchema) })
-          )
-        ),
+      adverts: yup.array().of(advertisedResponseSchemaNotUser),
     })
   );

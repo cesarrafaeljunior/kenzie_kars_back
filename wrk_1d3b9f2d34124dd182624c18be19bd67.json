@@ -14,12 +14,12 @@
   "meta": {
     "_id": "wrkm_728fea33deac49c28f0c627df430e4ae",
     "created": 1683053474755,
-    "modified": 1683053610981,
+    "modified": 1683141536766,
     "parentId": "wrk_1d3b9f2d34124dd182624c18be19bd67",
     "type": "WorkspaceMeta",
     "activeActivity": null,
     "activeEnvironmentId": "env_259260f6967f498f90d2a36f7720553d",
-    "activeRequestId": "req_cd12527fab954f1aa7e6fb33d0698809"
+    "activeRequestId": "req_5fc9d04ca0da42f195e33d829ddf477f"
   },
   "requests": [
     {
@@ -141,22 +141,20 @@
           "type": "request",
           "id": "req_5c0c8c45b5a94a60afb8133187c31197",
           "meta": {
+            "_id": "reqm_47814024ab8636dc0459de24fc76a97e",
+            "type": "RequestMeta",
             "parentId": "req_5c0c8c45b5a94a60afb8133187c31197",
+            "modified": 1683141533403,
+            "created": 1683053715675,
             "previewMode": "friendly",
             "responseFilter": "",
             "responseFilterHistory": [],
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 0,
+            "lastActive": 1683141533402,
             "downloadPath": null,
-            "expandedAccordionKeys": {},
-            "created": 1683053715675,
-            "isPrivate": false,
-            "modified": 1683053715675,
-            "type": "RequestMeta",
-            "_id": "reqm_47814024ab8636dc0459de24fc76a97e",
-            "name": ""
+            "expandedAccordionKeys": {}
           },
           "request": {
             "_id": "req_5c0c8c45b5a94a60afb8133187c31197",
@@ -184,24 +182,65 @@
         },
         {
           "type": "request",
-          "id": "req_62c48a6af3404e8a87efb624782ec7f9",
+          "id": "req_5fc9d04ca0da42f195e33d829ddf477f",
           "meta": {
-            "parentId": "req_62c48a6af3404e8a87efb624782ec7f9",
+            "_id": "reqm_80b3e1a9523747ff8574aa937cc0b66c",
+            "type": "RequestMeta",
+            "parentId": "req_5fc9d04ca0da42f195e33d829ddf477f",
+            "modified": 1683141539907,
+            "created": 1683141523948,
             "previewMode": "friendly",
             "responseFilter": "",
             "responseFilterHistory": [],
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 0,
+            "lastActive": 1683141536766,
             "downloadPath": null,
-            "expandedAccordionKeys": {},
-            "created": 1683053715676,
+            "expandedAccordionKeys": {}
+          },
+          "request": {
+            "_id": "req_5fc9d04ca0da42f195e33d829ddf477f",
+            "type": "Request",
+            "parentId": "fld_41cbb03078e54d5b8d8ef751fd558d00",
+            "modified": 1683141539091,
+            "created": 1683141523798,
+            "url": "{{ _.baseURL }}/advertised/f06124b6-ae1e-4faa-8ab3-45a26330182c",
+            "name": "New Request",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1683141523798,
             "isPrivate": false,
-            "modified": 1683053715676,
-            "type": "RequestMeta",
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+          }
+        },
+        {
+          "type": "request",
+          "id": "req_62c48a6af3404e8a87efb624782ec7f9",
+          "meta": {
             "_id": "reqm_c0474a6d6732bc12558b16e447dc5b58",
-            "name": ""
+            "type": "RequestMeta",
+            "parentId": "req_62c48a6af3404e8a87efb624782ec7f9",
+            "modified": 1683139817331,
+            "created": 1683053715676,
+            "previewMode": "friendly",
+            "responseFilter": "",
+            "responseFilterHistory": [],
+            "activeResponseId": null,
+            "savedRequestBody": {},
+            "pinned": false,
+            "lastActive": 1683139817329,
+            "downloadPath": null,
+            "expandedAccordionKeys": {}
           },
           "request": {
             "_id": "req_62c48a6af3404e8a87efb624782ec7f9",
@@ -287,22 +326,20 @@
           "type": "request",
           "id": "req_bbeae7d3c9964aa987bc57f57cc5e2f1",
           "meta": {
+            "_id": "reqm_d83138de636f79b2350fb5cd3775ff21",
+            "type": "RequestMeta",
             "parentId": "req_bbeae7d3c9964aa987bc57f57cc5e2f1",
+            "modified": 1683141531616,
+            "created": 1683053715677,
             "previewMode": "friendly",
             "responseFilter": "",
             "responseFilterHistory": [],
             "activeResponseId": null,
             "savedRequestBody": {},
             "pinned": false,
-            "lastActive": 0,
+            "lastActive": 1683141531615,
             "downloadPath": null,
-            "expandedAccordionKeys": {},
-            "created": 1683053715677,
-            "isPrivate": false,
-            "modified": 1683053715677,
-            "type": "RequestMeta",
-            "_id": "reqm_d83138de636f79b2350fb5cd3775ff21",
-            "name": ""
+            "expandedAccordionKeys": {}
           },
           "request": {
             "_id": "req_bbeae7d3c9964aa987bc57f57cc5e2f1",
@@ -520,9 +557,9 @@
             "_id": "fldm_04ce443dd7de4833a08fa564b0c72de5",
             "type": "RequestGroupMeta",
             "parentId": "fld_deab88036fda476e8a3fe6ade432f9e6",
-            "modified": 1683053593280,
+            "modified": 1683139818386,
             "created": 1683053591583,
-            "collapsed": true
+            "collapsed": false
           }
         }
       ],
@@ -530,7 +567,7 @@
         "_id": "fldm_c4c7f8a39cae401198cd660078a27321",
         "type": "RequestGroupMeta",
         "parentId": "fld_41cbb03078e54d5b8d8ef751fd558d00",
-        "modified": 1683053590726,
+        "modified": 1683141520986,
         "created": 1683053590726,
         "collapsed": false
       }
@@ -1255,9 +1292,9 @@
         "_id": "fldm_6a165d6064a44dd0bb1c2d7b41eab3ca",
         "type": "RequestGroupMeta",
         "parentId": "fld_b8b40c25db8246e98dbcb8cc46159711",
-        "modified": 1683053600698,
+        "modified": 1683139813354,
         "created": 1683053580034,
-        "collapsed": false
+        "collapsed": true
       }
     }
   ],

@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "typeorm": "tsx ./node_modules/typeorm/cli.js"
+    "typeorm": "tsx ./node_modules/typeorm/cli.js",
+    "vercel-build": "yarn typeorm migration:run -d ./src/data-source.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

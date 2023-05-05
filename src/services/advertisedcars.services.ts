@@ -206,6 +206,23 @@ export const editAdvertisedService = async (
       (res) => (advertiseComplete = { ...advertiseComplete, year: res })
     ));
 
+  if (advertisedData.galery) {
+    const galeryRepo = AppDataSource.getRepository(SellerGalery);
+
+    const galery = advertisedData.galery.map(({ image }, index) =>
+      galeryRepo.create(
+        oldAdvertiseObj.galery[index]
+          ? { ...oldAdvertiseObj.galery[index], image }
+          : { image, advert: oldAdvertiseObj }
+      )
+    );
+    await galeryRepo.save(galery);
+    advertisedData.galery = galery;
+
+    const residualImages = oldAdvertiseObj.galery.splice(galery.length);
+    await galeryRepo.remove(residualImages);
+  }
+
   advertiseComplete = { ...advertisedData, ...advertiseComplete };
 
   const advertised: Advertised_car = advertisedRespository.create({

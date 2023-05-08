@@ -23,6 +23,10 @@ import { Fuel } from "../entities/fuels.entity";
 import { Color } from "../entities/colors.entity";
 import { Year } from "../entities/years.entity";
 import { SellerGalery } from "../entities/sellerGalery.entity";
+import {
+  formatToNumber,
+  getPaginationFormat,
+} from "../utils/getPaginationFormat.utils";
 
 export const createAdvertisedService = async (
   user: User,
@@ -132,7 +136,11 @@ export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
   return advertisedValidated;
 };
 
-export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
+export const retrieveAllAdvertisedService = async (
+  query: iAdvertQuery,
+  hostname: string,
+  baseUrl: string
+) => {
   const advertisedRespository: Repository<Advertised_car> =
     AppDataSource.getRepository(Advertised_car);
 
@@ -153,6 +161,8 @@ export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
   if (query.year) {
     filterList = { ...filterList, year: { year: Number(query.year) } };
   }
+  const page = query.page ? formatToNumber(query.page, 1) : 1;
+  const perPage = query.perPage ? formatToNumber(query.perPage, 10) : 10;
 
   const advertisedList = await advertisedRespository.find({
     relations: {
@@ -165,14 +175,30 @@ export const retrieveAllAdvertisedService = async (query: iAdvertQuery) => {
       galery: true,
     },
     where: filterList,
+    order: { created_at: "DESC" },
   });
 
-  const advertiseValidated = advertisedListResponseSchema.validateSync(
-    advertisedList,
-    { abortEarly: false, stripUnknown: true }
-  );
+  const advertisedListPaginated = await advertisedRespository
+    .find({
+      relations: {
+        user: true,
+        brand: true,
+        model: true,
+        fuel: true,
+        color: true,
+        year: true,
+        galery: true,
+      },
+      where: filterList,
+      order: { created_at: "DESC" },
+      skip: page * perPage - perPage,
+      take: perPage,
+    })
+    .then((res) =>
+      getPaginationFormat(res, page, perPage, advertisedList, hostname, baseUrl)
+    );
 
-  return advertiseValidated;
+  return advertisedListPaginated;
 };
 
 export const editAdvertisedService = async (

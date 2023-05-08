@@ -16,8 +16,8 @@ export const getPaginationFormat = (
 ) => {
   baseUrl =
     hostname == "localhost"
-      ? `${hostname}:${process.env.PORT}${baseUrl}`
-      : hostname + baseUrl;
+      ? `http://${hostname}:${process.env.PORT}${baseUrl}`
+      : `https://${hostname}${baseUrl}`;
   const count = unpaginatedData.length;
 
   if (page * perPage - perPage > count) {

@@ -42,7 +42,9 @@ export const retrieveAllAdvertisedController = async (
   res: Response
 ): Promise<Response> => {
   const advertisedData = await retrieveAllAdvertisedService(
-    req.query as iAdvertQuery
+    req.query as iAdvertQuery,
+    req.hostname,
+    req.baseUrl
   );
 
   return res.json(advertisedData);

@@ -19,15 +19,20 @@ export const getPaginationFormat = (
       ? `http://${hostname}:${process.env.PORT}${baseUrl}`
       : `https://${hostname}${baseUrl}`;
   const count = unpaginatedData.length;
+  let previous = page - 1 == 0 ? null : `${baseUrl}?page=${page - 1}`;
+  const last = `${baseUrl}?page=${Math.ceil(count / perPage)}`;
 
   if (page * perPage - perPage > count) {
-    page = Math.ceil(count / perPage) + 1;
+    page = Math.ceil(count / perPage);
+    previous = last;
   }
 
   return {
     count,
+    first: page == 1 ? null : `${baseUrl}?page=1`,
+    previous,
     next: page * perPage >= count ? null : `${baseUrl}?page=${page + 1}`,
-    previous: page - 1 == 0 ? null : `${baseUrl}?page=${page - 1}`,
+    last: Math.ceil(count / perPage) == page ? null : last,
     results: advertisedListResponseSchema.validateSync(data, {
       abortEarly: false,
       stripUnknown: true,

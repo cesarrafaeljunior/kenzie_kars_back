@@ -24,8 +24,12 @@ export const retrieveAdvertisedByUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId = req.paramUser.id;
-  const advertisedData = await retrieveAdvertisedByUserService(userId);
+  const advertisedData = await retrieveAdvertisedByUserService(
+    req.paramUser,
+    req.query as iAdvertQuery,
+    req.hostname,
+    req.baseUrl
+  );
 
   return res.json(advertisedData);
 };

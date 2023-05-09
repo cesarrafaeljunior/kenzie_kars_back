@@ -75,9 +75,24 @@ export const advertisedListResponseSchema = yup
   .array()
   .of(advertisedResponseSchema);
 
-export const advertiseListByUserResponseSchema =
+export const advertiseListByUserResponseSchemaPaginated =
   userResponseSchemaNotAddress.concat(
     yup.object().shape({
-      adverts: yup.array().of(advertisedResponseSchemaNotUser),
+      results: yup.array().of(advertisedResponseSchemaNotUser),
+      last: yup.string().nullable(),
+      next: yup.string().nullable(),
+      previous: yup.string().nullable(),
+      first: yup.string().nullable(),
+      count: yup.number().nullable(),
     })
   );
+
+export const advertisedListResponseSchemaPaginated = yup.object().shape({
+  unpaginatedResults: yup.array().of(advertisedResponseSchema),
+  results: yup.array().of(advertisedResponseSchema),
+  last: yup.string().nullable(),
+  next: yup.string().nullable(),
+  previous: yup.string().nullable(),
+  first: yup.string().nullable(),
+  count: yup.number().nullable(),
+});

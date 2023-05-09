@@ -1,24 +1,23 @@
-import { Advertised_car } from "../entities/adverts.entity";
-import { advertisedListResponseSchema } from "../schemas/advertisedcars.schemas";
+import { iGetPaginationFormat } from "../interfaces/util.interfaces";
 
 export const formatToNumber = (value: string, defaultValue: number) => {
   const number = Number(value.replace(/[^0-9-]/g, ""));
   return number <= 0 ? defaultValue : number;
 };
 
-export const getPaginationFormat = (
-  data: Advertised_car[],
-  page: number,
-  perPage: number,
-  unpaginatedData: Advertised_car[],
-  hostname: string,
-  baseUrl: string
-) => {
+export const getPaginationFormat = ({
+  data,
+  count,
+  page,
+  perPage,
+  hostname,
+  baseUrl,
+}: iGetPaginationFormat) => {
   baseUrl =
     hostname == "localhost"
       ? `http://${hostname}:${process.env.PORT}${baseUrl}`
       : `https://${hostname}${baseUrl}`;
-  const count = unpaginatedData.length;
+
   let previous = page - 1 == 0 ? null : `${baseUrl}?page=${page - 1}`;
   const last = `${baseUrl}?page=${Math.ceil(count / perPage)}`;
 
@@ -33,13 +32,6 @@ export const getPaginationFormat = (
     previous,
     next: page * perPage >= count ? null : `${baseUrl}?page=${page + 1}`,
     last: Math.ceil(count / perPage) == page ? null : last,
-    results: advertisedListResponseSchema.validateSync(data, {
-      abortEarly: false,
-      stripUnknown: true,
-    }),
-    unpaginatedResults: advertisedListResponseSchema.validateSync(
-      unpaginatedData,
-      { abortEarly: false, stripUnknown: true }
-    ),
+    results: data,
   };
 };

@@ -11,8 +11,9 @@ import { Between, Repository } from "typeorm";
 import { User } from "../entities/users.entity";
 import { Advertised_car } from "../entities/adverts.entity";
 import {
-  advertiseListByUserResponseSchema,
+  advertiseListByUserResponseSchemaPaginated,
   advertisedListResponseSchema,
+  advertisedListResponseSchemaPaginated,
   advertisedResponseSchema,
   advertisedResponseWithComments,
 } from "../schemas/advertisedcars.schemas";
@@ -76,15 +77,28 @@ export const createAdvertisedService = async (
   return advertisedValidated;
 };
 
-export const retrieveAdvertisedByUserService = async (userId: string) => {
-  const userRepository: Repository<User> = AppDataSource.getRepository(User);
+export const retrieveAdvertisedByUserService = async (
+  user: User,
+  query: iAdvertQuery,
+  hostname: string,
+  baseUrl: string
+) => {
+  const advertisedRespository = AppDataSource.getRepository(Advertised_car);
+  user = await AppDataSource.getRepository(User)
+    .findOneOrFail({
+      where: { id: user.id },
+      relations: { adverts: { galery: true } },
+    })
+    .catch(() => {
+      throw new AppError("User not found", 404);
+    });
 
-  const advertised = await userRepository.findOne({
-    where: {
-      id: userId,
-    },
-    relations: {
-      adverts: {
+  const page = query.page ? formatToNumber(query.page, 1) : 1;
+  const perPage = query.perPage ? formatToNumber(query.perPage, 10) : 10;
+
+  const advertisedListToPaginate = await advertisedRespository
+    .find({
+      relations: {
         brand: true,
         model: true,
         fuel: true,
@@ -92,19 +106,28 @@ export const retrieveAdvertisedByUserService = async (userId: string) => {
         year: true,
         galery: true,
       },
-    },
-  });
+      where: { user: { id: user.id } },
+      order: { created_at: "DESC" },
+      skip: page * perPage - perPage,
+      take: perPage,
+    })
+    .then((data) =>
+      getPaginationFormat({
+        data,
+        count: user.adverts.length,
+        page,
+        perPage,
+        hostname,
+        baseUrl,
+      })
+    );
 
-  if (!advertised) {
-    throw new AppError("user not found ", 404);
-  }
-
-  const advertisedValidated = advertiseListByUserResponseSchema.validateSync(
-    advertised,
+  const userValidated = advertiseListByUserResponseSchemaPaginated.validateSync(
+    { ...user, ...advertisedListToPaginate },
     { stripUnknown: true, abortEarly: false }
   );
 
-  return advertisedValidated;
+  return userValidated;
 };
 
 export const retrieveAdvertisedService = async (advertise: Advertised_car) => {
@@ -194,11 +217,24 @@ export const retrieveAllAdvertisedService = async (
       skip: page * perPage - perPage,
       take: perPage,
     })
-    .then((res) =>
-      getPaginationFormat(res, page, perPage, advertisedList, hostname, baseUrl)
+    .then((data) =>
+      getPaginationFormat({
+        data,
+        count: advertisedList.length,
+        page,
+        perPage,
+        hostname,
+        baseUrl,
+      })
     );
 
-  return advertisedListPaginated;
+  const advertisedListValidated =
+    advertisedListResponseSchemaPaginated.validateSync(
+      { ...advertisedListPaginated, unpaginatedResults: advertisedList },
+      { stripUnknown: true, abortEarly: false }
+    );
+
+  return advertisedListValidated;
 };
 
 export const editAdvertisedService = async (

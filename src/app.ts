@@ -10,8 +10,8 @@ import { commentsRoutes } from "./routes/comment.routes";
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.use("/login", loginRoutes);
 app.use("/users", userRoutes);

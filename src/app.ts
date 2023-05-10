@@ -10,7 +10,14 @@ import { commentsRoutes } from "./routes/comment.routes";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://motors-shop-back-end.vercel.app",
+    ],
+  })
+);
 app.use(express.json());
 
 app.use("/login", loginRoutes);

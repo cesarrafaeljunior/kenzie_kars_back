@@ -16,7 +16,7 @@ import { isCommentExistsMiddleware } from "../middlewares/isCommentExists.middle
 export const commentsRoutes = Router();
 
 commentsRoutes.post(
-  "",
+  "/:advertId/comments",
   verifyTokenMiddleware,
   isAdvertiseExistsMiddleware,
   bodyValidateMiddleware(commentRequestSchema),
@@ -24,7 +24,7 @@ commentsRoutes.post(
 );
 
 commentsRoutes.patch(
-  "/:commentId/",
+  "/:advertId/comments/:commentId/",
   verifyTokenMiddleware,
   isAdvertiseExistsMiddleware,
   isCommentExistsMiddleware,
@@ -33,7 +33,7 @@ commentsRoutes.patch(
 );
 
 commentsRoutes.delete(
-  "/:commentId/",
+  "/:advertId/comments/:commentId/",
   verifyTokenMiddleware,
   isAdvertiseExistsMiddleware,
   isCommentExistsMiddleware,

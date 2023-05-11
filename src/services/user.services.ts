@@ -115,7 +115,7 @@ export const editUserService = async (
 ): Promise<iUserNotAddress> => {
   const userRepo: Repository<User> = AppDataSource.getRepository(User);
 
-  if (body.email) {
+  if (body.email && user.email !== body.email) {
     await userRepo.findOneBy({ email: body.email }).then((res) => {
       if (res?.id) {
         throw new AppError("This email already used", 409);
@@ -123,7 +123,7 @@ export const editUserService = async (
     });
   }
 
-  if (body.cpf) {
+  if (body.cpf && user.cpf !== body.cpf) {
     await userRepo.findOneBy({ cpf: body.cpf }).then((res) => {
       if (res?.id) {
         throw new AppError("This cpf already used", 409);
@@ -131,7 +131,7 @@ export const editUserService = async (
     });
   }
 
-  if (body.phone_number) {
+  if (body.phone_number && user.phone_number !== body.phone_number) {
     await userRepo
       .findOneBy({ phone_number: body.phone_number })
       .then((res) => {

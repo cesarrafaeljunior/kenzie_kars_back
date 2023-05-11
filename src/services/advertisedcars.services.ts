@@ -197,7 +197,7 @@ export const retrieveAllAdvertisedService = async (
       year: true,
       galery: true,
     },
-    where: filterList,
+    where: { ...filterList, is_avaliable: true },
     order: { created_at: "DESC" },
   });
 
@@ -212,7 +212,7 @@ export const retrieveAllAdvertisedService = async (
         year: true,
         galery: true,
       },
-      where: filterList,
+      where: { ...filterList, is_avaliable: true },
       order: { created_at: "DESC" },
       skip: page * perPage - perPage,
       take: perPage,

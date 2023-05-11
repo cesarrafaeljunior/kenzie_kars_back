@@ -15,7 +15,9 @@ export const createCommentService = async (
   body: iCommentRequest
 ): Promise<iComment> => {
   const commentRepo = AppDataSource.getRepository(Comment);
-
+  console.log();
+  console.log(advert);
+  console.log();
   const comment = commentRepo.create({ user, advert, ...body });
   await commentRepo.save(comment);
 
